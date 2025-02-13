@@ -149,4 +149,5 @@ CMakeFiles/lab1.dir/main.cpp.o: \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc \
- /home/oem/labs/Andreev-Sem02/lab1/mymath/mymath.h
+ /home/oem/labs/Andreev-Sem02/lab1/mymath/mymath.h \
+ /home/oem/labs/Andreev-Sem02/lab1/myproduct/myproduct.h

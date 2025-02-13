@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/oem/labs/Andreev-Sem02/lab1/test/CMakeFiles /home/oem/labs/Andreev-Sem02/lab1/test//CMakeFiles/progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
+	cd /home/oem/labs/Andreev-Sem02/lab1/test && $(CMAKE_COMMAND) -E cmake_progress_start /home/oem/labs/Andreev-Sem02/lab1/test/CMakeFiles /home/oem/labs/Andreev-Sem02/lab1/test/myproduct//CMakeFiles/progress.marks
+	cd /home/oem/labs/Andreev-Sem02/lab1/test && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 myproduct/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/oem/labs/Andreev-Sem02/lab1/test/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 clean
+	cd /home/oem/labs/Andreev-Sem02/lab1/test && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 myproduct/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,81 +103,56 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /home/oem/labs/Andreev-Sem02/lab1/test && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 myproduct/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 preinstall
+	cd /home/oem/labs/Andreev-Sem02/lab1/test && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 myproduct/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/oem/labs/Andreev-Sem02/lab1/test && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-#=============================================================================
-# Target rules for targets named lab1
+# Convenience name for target.
+myproduct/CMakeFiles/myproduct.dir/rule:
+	cd /home/oem/labs/Andreev-Sem02/lab1/test && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 myproduct/CMakeFiles/myproduct.dir/rule
+.PHONY : myproduct/CMakeFiles/myproduct.dir/rule
 
-# Build rule for target.
-lab1: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lab1
-.PHONY : lab1
-
-# fast build rule for target.
-lab1/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/build
-.PHONY : lab1/fast
-
-#=============================================================================
-# Target rules for targets named mymath
-
-# Build rule for target.
-mymath: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mymath
-.PHONY : mymath
-
-# fast build rule for target.
-mymath/fast:
-	$(MAKE) $(MAKESILENT) -f mymath/CMakeFiles/mymath.dir/build.make mymath/CMakeFiles/mymath.dir/build
-.PHONY : mymath/fast
-
-#=============================================================================
-# Target rules for targets named myproduct
-
-# Build rule for target.
-myproduct: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 myproduct
+# Convenience name for target.
+myproduct: myproduct/CMakeFiles/myproduct.dir/rule
 .PHONY : myproduct
 
 # fast build rule for target.
 myproduct/fast:
-	$(MAKE) $(MAKESILENT) -f myproduct/CMakeFiles/myproduct.dir/build.make myproduct/CMakeFiles/myproduct.dir/build
+	cd /home/oem/labs/Andreev-Sem02/lab1/test && $(MAKE) $(MAKESILENT) -f myproduct/CMakeFiles/myproduct.dir/build.make myproduct/CMakeFiles/myproduct.dir/build
 .PHONY : myproduct/fast
 
-main.o: main.cpp.o
-.PHONY : main.o
+myproduct.o: myproduct.cpp.o
+.PHONY : myproduct.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/main.cpp.o
-.PHONY : main.cpp.o
+myproduct.cpp.o:
+	cd /home/oem/labs/Andreev-Sem02/lab1/test && $(MAKE) $(MAKESILENT) -f myproduct/CMakeFiles/myproduct.dir/build.make myproduct/CMakeFiles/myproduct.dir/myproduct.cpp.o
+.PHONY : myproduct.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+myproduct.i: myproduct.cpp.i
+.PHONY : myproduct.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/main.cpp.i
-.PHONY : main.cpp.i
+myproduct.cpp.i:
+	cd /home/oem/labs/Andreev-Sem02/lab1/test && $(MAKE) $(MAKESILENT) -f myproduct/CMakeFiles/myproduct.dir/build.make myproduct/CMakeFiles/myproduct.dir/myproduct.cpp.i
+.PHONY : myproduct.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+myproduct.s: myproduct.cpp.s
+.PHONY : myproduct.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/main.cpp.s
-.PHONY : main.cpp.s
+myproduct.cpp.s:
+	cd /home/oem/labs/Andreev-Sem02/lab1/test && $(MAKE) $(MAKESILENT) -f myproduct/CMakeFiles/myproduct.dir/build.make myproduct/CMakeFiles/myproduct.dir/myproduct.cpp.s
+.PHONY : myproduct.cpp.s
 
 # Help Target
 help:
@@ -187,12 +162,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... lab1"
-	@echo "... mymath"
 	@echo "... myproduct"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... myproduct.o"
+	@echo "... myproduct.i"
+	@echo "... myproduct.s"
 .PHONY : help
 
 
@@ -204,6 +177,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/oem/labs/Andreev-Sem02/lab1/test && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

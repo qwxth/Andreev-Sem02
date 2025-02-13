@@ -65,15 +65,18 @@ CMAKE_BINARY_DIR = /home/oem/labs/Andreev-Sem02/lab1/test
 # The main recursive "all" target.
 all: CMakeFiles/lab1.dir/all
 all: mymath/all
+all: myproduct/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: mymath/preinstall
+preinstall: myproduct/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/lab1.dir/clean
 clean: mymath/clean
+clean: myproduct/clean
 .PHONY : clean
 
 #=============================================================================
@@ -92,10 +95,26 @@ mymath/clean: mymath/CMakeFiles/mymath.dir/clean
 .PHONY : mymath/clean
 
 #=============================================================================
+# Directory level rules for directory myproduct
+
+# Recursive "all" directory target.
+myproduct/all: myproduct/CMakeFiles/myproduct.dir/all
+.PHONY : myproduct/all
+
+# Recursive "preinstall" directory target.
+myproduct/preinstall:
+.PHONY : myproduct/preinstall
+
+# Recursive "clean" directory target.
+myproduct/clean: myproduct/CMakeFiles/myproduct.dir/clean
+.PHONY : myproduct/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/lab1.dir
 
 # All Build rule for target.
 CMakeFiles/lab1.dir/all: mymath/CMakeFiles/mymath.dir/all
+CMakeFiles/lab1.dir/all: myproduct/CMakeFiles/myproduct.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/oem/labs/Andreev-Sem02/lab1/test/CMakeFiles --progress-num=1,2 "Built target lab1"
@@ -103,7 +122,7 @@ CMakeFiles/lab1.dir/all: mymath/CMakeFiles/mymath.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/lab1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/oem/labs/Andreev-Sem02/lab1/test/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/oem/labs/Andreev-Sem02/lab1/test/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/lab1.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/oem/labs/Andreev-Sem02/lab1/test/CMakeFiles 0
 .PHONY : CMakeFiles/lab1.dir/rule
@@ -142,6 +161,32 @@ mymath: mymath/CMakeFiles/mymath.dir/rule
 mymath/CMakeFiles/mymath.dir/clean:
 	$(MAKE) $(MAKESILENT) -f mymath/CMakeFiles/mymath.dir/build.make mymath/CMakeFiles/mymath.dir/clean
 .PHONY : mymath/CMakeFiles/mymath.dir/clean
+
+#=============================================================================
+# Target rules for target myproduct/CMakeFiles/myproduct.dir
+
+# All Build rule for target.
+myproduct/CMakeFiles/myproduct.dir/all:
+	$(MAKE) $(MAKESILENT) -f myproduct/CMakeFiles/myproduct.dir/build.make myproduct/CMakeFiles/myproduct.dir/depend
+	$(MAKE) $(MAKESILENT) -f myproduct/CMakeFiles/myproduct.dir/build.make myproduct/CMakeFiles/myproduct.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/oem/labs/Andreev-Sem02/lab1/test/CMakeFiles --progress-num=5,6 "Built target myproduct"
+.PHONY : myproduct/CMakeFiles/myproduct.dir/all
+
+# Build rule for subdir invocation for target.
+myproduct/CMakeFiles/myproduct.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/oem/labs/Andreev-Sem02/lab1/test/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 myproduct/CMakeFiles/myproduct.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/oem/labs/Andreev-Sem02/lab1/test/CMakeFiles 0
+.PHONY : myproduct/CMakeFiles/myproduct.dir/rule
+
+# Convenience name for target.
+myproduct: myproduct/CMakeFiles/myproduct.dir/rule
+.PHONY : myproduct
+
+# clean rule for target.
+myproduct/CMakeFiles/myproduct.dir/clean:
+	$(MAKE) $(MAKESILENT) -f myproduct/CMakeFiles/myproduct.dir/build.make myproduct/CMakeFiles/myproduct.dir/clean
+.PHONY : myproduct/CMakeFiles/myproduct.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
