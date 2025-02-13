@@ -1,0 +1,6 @@
+/home/oem/labs/Andreev-Sem02/lab1/test/CMakeFiles/lab1.dir
+/home/oem/labs/Andreev-Sem02/lab1/test/CMakeFiles/edit_cache.dir
+/home/oem/labs/Andreev-Sem02/lab1/test/CMakeFiles/rebuild_cache.dir
+/home/oem/labs/Andreev-Sem02/lab1/test/mymath/CMakeFiles/mymath.dir
+/home/oem/labs/Andreev-Sem02/lab1/test/mymath/CMakeFiles/edit_cache.dir
+/home/oem/labs/Andreev-Sem02/lab1/test/mymath/CMakeFiles/rebuild_cache.dir
