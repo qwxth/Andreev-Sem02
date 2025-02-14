@@ -13,6 +13,7 @@ int demoMode() {
 
   return 0;
 }
+
 int interactiveMode() {
   int a = 0;
   int b = 0;
@@ -31,10 +32,13 @@ int interactiveMode() {
 
 void StartApp() {
   char mode;
+
   std::cout << "vvedite mode" << std::endl;
   std::cin >> mode;
+
   SelectMode(static_cast<ModeType>(mode));
 }
+
 void SelectMode(ModeType mode) {
   switch (static_cast<ModeType>(mode)) {
   case ModeType::DemoMode:
