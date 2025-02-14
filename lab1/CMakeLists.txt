@@ -3,17 +3,22 @@ cmake_minimum_required(VERSION 3.23)
 set(project "lab1")
 project(${project})
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 set(${project}_SOURCES
-        main.cpp)
+        main.cpp
+        Calculator.cpp)
+
+set(${project}_HEADERS
+        Calculator.h)
 
 add_subdirectory(mymath)
 add_subdirectory(myproduct)
 
 
 set(${project}_SOURCE_LIST
-        ${${project}_SOURCES})
+        ${${project}_SOURCES}
+        ${${project}_HEADERS})
 
 add_executable(${project}
         ${${project}_SOURCE_LIST})

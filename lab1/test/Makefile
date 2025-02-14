@@ -155,6 +155,30 @@ myproduct/fast:
 	$(MAKE) $(MAKESILENT) -f myproduct/CMakeFiles/myproduct.dir/build.make myproduct/CMakeFiles/myproduct.dir/build
 .PHONY : myproduct/fast
 
+Calculator.o: Calculator.cpp.o
+.PHONY : Calculator.o
+
+# target to build an object file
+Calculator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/Calculator.cpp.o
+.PHONY : Calculator.cpp.o
+
+Calculator.i: Calculator.cpp.i
+.PHONY : Calculator.i
+
+# target to preprocess a source file
+Calculator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/Calculator.cpp.i
+.PHONY : Calculator.cpp.i
+
+Calculator.s: Calculator.cpp.s
+.PHONY : Calculator.s
+
+# target to generate assembly for a file
+Calculator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/Calculator.cpp.s
+.PHONY : Calculator.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -190,6 +214,9 @@ help:
 	@echo "... lab1"
 	@echo "... mymath"
 	@echo "... myproduct"
+	@echo "... Calculator.o"
+	@echo "... Calculator.i"
+	@echo "... Calculator.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

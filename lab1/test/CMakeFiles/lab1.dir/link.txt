@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/lab1.dir/main.cpp.o -o lab1  mymath/libmymath.a myproduct/libmyproduct.a 
+/usr/bin/c++ CMakeFiles/lab1.dir/main.cpp.o CMakeFiles/lab1.dir/Calculator.cpp.o -o lab1  mymath/libmymath.a myproduct/libmyproduct.a 
