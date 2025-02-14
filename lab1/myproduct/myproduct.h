@@ -2,7 +2,7 @@
 #define MYPRODUCT_H
 
 namespace myproduct {
-    int product(int a, int b);
+int product(int a, int b);
 }
 
-#endif //MYPRODUCT_H
+#endif  // MYPRODUCT_H

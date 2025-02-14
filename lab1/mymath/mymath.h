@@ -2,7 +2,7 @@
 #define MYMATH_H
 
 namespace mymath {
-    int sum(int a, int b);
+int sum(int a, int b);
 }
 
-#endif //MYMATH_H
+#endif  // MYMATH_H

@@ -2,8 +2,6 @@ CMakeFiles/lab1.dir/Calculator.cpp.o: \
  /home/oem/labs/Andreev-Sem02/lab1/Calculator.cpp \
  /usr/include/stdc-predef.h \
  /home/oem/labs/Andreev-Sem02/lab1/Calculator.h \
- /home/oem/labs/Andreev-Sem02/lab1/mymath/mymath.h \
- /home/oem/labs/Andreev-Sem02/lab1/myproduct/myproduct.h \
  /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
@@ -157,4 +155,6 @@ CMakeFiles/lab1.dir/Calculator.cpp.o: \
  /usr/include/c++/13/bits/locale_facets.tcc \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
- /usr/include/c++/13/bits/istream.tcc
+ /usr/include/c++/13/bits/istream.tcc \
+ /home/oem/labs/Andreev-Sem02/lab1/mymath/mymath.h \
+ /home/oem/labs/Andreev-Sem02/lab1/myproduct/myproduct.h

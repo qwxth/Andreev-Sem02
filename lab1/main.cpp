@@ -1,7 +1,7 @@
 #include "Calculator.h"
 
 int main() {
-  Calculator::StartApp();
+    Calculator::StartApp();
 
-  return 0;
+    return 0;
 }
