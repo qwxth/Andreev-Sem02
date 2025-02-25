@@ -4,15 +4,13 @@
 #include <iostream>
 
 class Planet {
-private:
-    static int count;
-    int id;
+ private:
     char* name;
     long long diameter;
     int satellites;
     bool hasLife;
 
-public:
+ public:
     Planet();
     Planet(const char* name, long long diameter, int satellites, bool hasLife);
     Planet(const Planet& other);
@@ -33,9 +31,9 @@ public:
     static void editPlanet(Planet& planet);
     static void displayPlanets(const Planet* planets, int size);
 
-private:
+ private:
     void copyFrom(const Planet& other);
     void cleanup();
 };
 
-#endif // PLANET_H
+#endif  // PLANET_H

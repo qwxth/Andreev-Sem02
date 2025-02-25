@@ -1,28 +1,22 @@
-#include "planet.h"
-#include <cstring>
+#include "Planet.h"
+
 #include <algorithm>
+#include <cstring>
 #include <fstream>
 
-int Planet::count = 0;
-
-Planet::Planet() : id(++count), name(nullptr), diameter(0), satellites(0), hasLife(false) {
-    std::cout << "Создание ID " << id << std::endl;
+Planet::Planet() : name(nullptr), diameter(0), satellites(0), hasLife(false) {
 }
 
-Planet::Planet(const char* name, long long diameter, int satellites, bool hasLife)
-    : id(++count), diameter(diameter), satellites(satellites), hasLife(hasLife) {
+Planet::Planet(const char* name, long long diameter, int satellites, bool hasLife) : diameter(diameter), satellites(satellites), hasLife(hasLife) {
     this->name = new char[strlen(name) + 1];
     strcpy(this->name, name);
-    std::cout << "Создание ID " << id << std::endl;
 }
 
-Planet::Planet(const Planet& other) : id(++count), name(nullptr) {
+Planet::Planet(const Planet& other) : name(nullptr) {
     copyFrom(other);
-    std::cout << "Создание ID " << id << " (копирование)" << std::endl;
 }
 
 Planet::~Planet() {
-    std::cout << "Удаление ID " << id << std::endl;
     cleanup();
 }
 
@@ -35,12 +29,14 @@ Planet& Planet::operator=(const Planet& other) {
 }
 
 bool Planet::operator<(const Planet& other) const {
-    if (!name || !other.name) return false;
+    if (!name || !other.name)
+        return false;
     return strcmp(name, other.name) < 0;
 }
 
 bool Planet::operator==(const Planet& other) const {
-    if (!name || !other.name) return false;
+    if (!name || !other.name)
+        return false;
     return strcmp(name, other.name) == 0;
 }
 
@@ -68,32 +64,25 @@ void Planet::readFromFile(const char* filename, Planet*& planets, int& size) {
         return;
     }
 
-    // Читаем размер
     file >> size;
-    file.ignore(); // Пропускаем символ новой строки после размера
+    file.ignore();
     std::cout << "Прочитан размер: " << size << std::endl;
 
-    // Освобождаем старую память
     if (planets != nullptr) {
         delete[] planets;
         planets = nullptr;
     }
 
-    // Выделяем новую память
     planets = new Planet[size];
 
-    // Читаем данные планет
     for (int i = 0; i < size; i++) {
         char name[256];
         long long diam;
         int sat;
         int life;
 
-        // Читаем данные текущей планеты
         if (file >> name >> diam >> sat >> life) {
-            std::cout << "Попытка создания планеты " << i << ": "
-                      << name << " " << diam << " "
-                      << sat << " " << life << std::endl;
+            std::cout << "Попытка создания планеты " << i << ": " << name << " " << diam << " " << sat << " " << life << std::endl;
 
             planets[i] = Planet(name, diam, sat, life != 0);
             std::cout << "Планета " << i << " успешно создана" << std::endl;
@@ -142,7 +131,7 @@ void Planet::removePlanet(Planet*& planets, int& size, int index) {
         return;
     }
 
-Planet* newArray = new Planet[size - 1];
+    Planet* newArray = new Planet[size - 1];
     int j = 0;
     for (int i = 0; i < size; ++i) {
         if (i != index) {
