@@ -10,87 +10,87 @@ void clearInputBuffer() {
 }
 
 void displayMainMenu() {
-    std::cout << "\nГлавное меню:\n"
-              << "1. Работа с планетами\n"
-              << "2. Работа с автобусами\n"
-              << "3. Запуск тестов\n"
-              << "0. Выход из программы\n"
-              << "Выберите действие: ";
+    std::cout << std::endl << "главное меню:" << std::endl
+              << "1. работа с планетами" << std::endl
+              << "2. работа с автобусами" << std::endl
+              << "3. запуск тестов" << std::endl
+              << "0. выход из программы"  << std::endl
+              << "выберите действие: ";
 }
 
 void displaySubMenu(const std::string& type) {
-    std::cout << "\nМеню " << type << ":\n"
-              << "1. Чтение БД из файла\n"
-              << "2. Запись БД в файл\n"
-              << "3. Сортировка БД\n"
-              << "4. Добавление нового элемента\n"
-              << "5. Удаление элемента\n"
-              << "6. Редактирование элемента\n"
-              << "7. Вывод БД на экран\n"
-              << "0. Возврат в главное меню\n"
-              << "Выберите действие: ";
+    std::cout << std::endl << "меню " << type << ":"  << std::endl
+              << "1. чтение БД из файла" << std::endl
+              << "2. запись БД в файл" << std::endl
+              << "3. сортировка БД" << std::endl
+              << "4. добавление нового элемента" << std::endl
+              << "5. удаление элемента" << std::endl
+              << "6. редактирование элемента" << std::endl
+              << "7. вывод БД на экран" << std::endl
+              << "0. возврат в главное меню" << std::endl
+              << "выберите действие: ";
 }
 
 void runTests() {
-    std::cout << "\n--- Запуск тестов ---\n";
+    std::cout << std::endl << "запуск тестов" << std::endl;
 
-    std::cout << "\nТест 1: Создание и вывод планет\n";
+    std::cout << std::endl << "тест 1: создание и вывод планет" << std::endl;
     Planet earth("Earth", 12742, 1, true);
     Planet mars("Mars", 6779, 2, false);
     std::cout << "Earth: " << earth << std::endl;
     std::cout << "Mars: " << mars << std::endl;
 
-    std::cout << "\nТест 2: Сортировка планет\n";
+    std::cout << std::endl << "тест 2: сортировка планет" << std::endl;
     Planet* planets = new Planet[2];
     planets[0] = mars;
     planets[1] = earth;
-    std::cout << "До сортировки:\n";
+    std::cout << "до сортировки:" << std::endl;
     Planet::displayPlanets(planets, 2);
     Planet::sortPlanets(planets, 2);
-    std::cout << "После сортировки:\n";
+    std::cout << "после сортировки:" << std::endl;
     Planet::displayPlanets(planets, 2);
     delete[] planets;
 
-    std::cout << "\nТест 3: Создание и вывод автобусов\n";
+    std::cout << std::endl << "тест 3: создание и вывод автобусов" << std::endl;
     Bus bus1("blue", "Mersedes", "12.05.2000", 5000000.0);
     Bus bus2("red", "Kamaz", "23.01.2005", 60000000.0);
     std::cout << "автобус 1: " << bus1 << std::endl;
     std::cout << "автобус 2: " << bus2 << std::endl;
 
-    std::cout << "\nТест 4: Сортировка автобусов\n";
+    std::cout << std::endl << "тест 4: сортировка автобусов" << std::endl;
     Bus* bus = new Bus[2];
     bus[0] = bus2;
     bus[1] = bus1;
-    std::cout << "До сортировки:\n";
+    std::cout << "до сортировки:" << std::endl;
     Bus::displayBus(bus, 2);
     Bus::sortBuses(bus, 2);
-    std::cout << "После сортировки:\n";
+    std::cout << "после сортировки:" << std::endl;
     Bus::displayBus(bus, 2);
     delete[] bus;
 
-    std::cout << "\nТест 5: Добавление и удаление автобусов\n";
+    std::cout << std::endl << "тест 5: добавление и удаление автобусов" << std::endl;
     Bus* busDB = nullptr;
     int size = 0;
     Bus::addBus(busDB, size, bus1);
     Bus::addBus(busDB, size, bus2);
-    std::cout << "После добавления:\n";
+    std::cout << "после добавления:" << std::endl;
     Bus::displayBus(busDB, size);
     Bus::removeBus(busDB, size, 0);
-    std::cout << "После удаления:\n";
+    std::cout << "после удаления:" << std::endl;
     Bus::displayBus(busDB, size);
     delete[] busDB;
 
-    std::cout << "\n--- Тесты завершены ---\n";
+    std::cout << std::endl << "тесты завершены" << std::endl;
 }
 
 template<typename T>
 void runDatabase(const std::string& type) {
     T* items = nullptr;
     int size = 0;
-    int choice;
+    int choice = 1;
     char filename[256];
 
-    do {
+    while (choice != 0){
         displaySubMenu(type);
         std::cin >> choice;
         clearInputBuffer();
@@ -98,12 +98,12 @@ void runDatabase(const std::string& type) {
 
         switch (choice) {
             case 1:
-                std::cout << "Введите имя файла для чтения: ";
+                std::cout << "введите имя файла для чтения: ";
                 std::cin >> filename;
                 T::readFromFile(filename, items, size);
                 break;
             case 2:
-                std::cout << "Введите имя файла для записи: ";
+                std::cout << "введите имя файла для записи: ";
                 std::cin >> filename;
                 T::writeToFile(filename, items, size);
                 break;
@@ -113,11 +113,11 @@ void runDatabase(const std::string& type) {
                 } else {
                     T::sortBuses(items, size);
                 }
-                std::cout << "БД отсортирована.\n";
+                std::cout << "БД отсортирована" << std::endl;
                 break;
             case 4: {
                 T newItem;
-                std::cout << "Введите данные нового элемента:\n";
+                std::cout << "введите данные нового элемента:" << std::endl;
                 std::cin >> newItem;
                 if constexpr (std::is_same_v<T, Planet>) {
                     T::addPlanet(items, size, newItem);
@@ -128,7 +128,7 @@ void runDatabase(const std::string& type) {
             }
             case 5: {
                 int index;
-                std::cout << "Введите индекс элемента для удаления: ";
+                std::cout << "введите индекс элемента для удаления: ";
                 std::cin >> index;
                 if constexpr (std::is_same_v<T, Planet>) {
                     T::removePlanet(items, size, index);
@@ -139,7 +139,7 @@ void runDatabase(const std::string& type) {
             }
             case 6: {
                 int index;
-                std::cout << "Введите индекс элемента для редактирования: ";
+                std::cout << "введите индекс элемента для редактирования: ";
                 std::cin >> index;
                 if (index >= 0 && index < size) {
                     if constexpr (std::is_same_v<T, Planet>) {
@@ -148,7 +148,7 @@ void runDatabase(const std::string& type) {
                         T::editBus(items[index]);
                     }
                 } else {
-                    std::cout << "Неверный индекс.\n";
+                    std::cout << "неверный индекс" << std::endl;
                 }
                 break;
             }
@@ -160,20 +160,20 @@ void runDatabase(const std::string& type) {
                 }
                 break;
             case 0:
-                std::cout << "Возврат в главное меню.\n";
+                std::cout << "возврат в главное меню" << std::endl;
                 break;
             default:
-                std::cout << "Неверный выбор. Попробуйте снова.\n";
+                std::cout << "введены недопустимые данные"  << std::endl;
         }
-    } while (choice != 0);
+    }
 
     delete[] items;
 }
 
 int main() {
-    int choice;
+    int choice = 1;
 
-    do {
+    while (choice != 0) {
         displayMainMenu();
         std::cin >> choice;
         clearInputBuffer();
@@ -189,12 +189,12 @@ int main() {
                 runTests();
                 break;
             case 0:
-                std::cout << "Выход из программы.\n";
+                std::cout << "выход из программы" << std::endl;
                 break;
             default:
-                std::cout << "Неверный выбор. Попробуйте снова.\n";
+                std::cout << "введены недопустимые данные" << std::endl;
         }
-    } while (choice != 0);
+    }
 
     return 0;
 }

@@ -69,12 +69,12 @@ std::istream& operator>>(std::istream& is, Bus& bus) {
 void Bus::readFromFile(const char* filename, Bus*& buses, int& size) {
     std::ifstream file(filename);
     if (!file) {
-        std::cerr << "Не удалось открыть файл " << filename << " для чтения." << std::endl;
+        std::cerr << "не удалось открыть файл " << filename << " для чтения" << std::endl;
         return;
     }
 
     if (!(file >> size)) {
-        std::cerr << "Ошибка при чтении размера массива из файла." << std::endl;
+        std::cerr << "ошибка при чтении размера массива из файла" << std::endl;
         file.close();
         return;
     }
@@ -89,7 +89,7 @@ void Bus::readFromFile(const char* filename, Bus*& buses, int& size) {
         double priceBuf;
 
         if (!(file >> colorBuf >> brandBuf >> dateBuf >> priceBuf)) {
-            std::cerr << "Ошибка при чтении данных автобуса #" << i+1 << std::endl;
+            std::cerr << "ошибка при чтении данных автобуса #" << i+1 << std::endl;
             continue;
         }
 
@@ -110,12 +110,12 @@ void Bus::readFromFile(const char* filename, Bus*& buses, int& size) {
     }
 
     file.close();
-    std::cout << "Успешно прочитано " << size << " автобусов из файла " << filename << std::endl;
+    std::cout << "успешно прочитано " << size << " автобусов из файла " << filename << std::endl;
 }
 void Bus::writeToFile(const char* filename, const Bus* buses, int size) {
     std::ofstream file(filename);
     if (!file) {
-        std::cerr << "Не удалось открыть файл для записи." << std::endl;
+        std::cerr << "не удалось открыть файл для записи." << std::endl;
         return;
     }
 
@@ -144,7 +144,7 @@ void Bus::addBus(Bus*& buses, int& size, const Bus& newBus) {
 
 void Bus::removeBus(Bus*& buses, int& size, int index) {
     if (index < 0 || index >= size) {
-        std::cerr << "Неверный индекс для удаления." << std::endl;
+        std::cerr << "неверный индекс для удаления" << std::endl;
         return;
     }
 
@@ -161,7 +161,7 @@ void Bus::removeBus(Bus*& buses, int& size, int index) {
 }
 
 void Bus::editBus(Bus& bus) {
-    std::cout << "Введите новые данные для автобуса:" << std::endl;
+    std::cout << "введите новые данные для автобуса:" << std::endl;
     std::cin >> bus;
 }
 

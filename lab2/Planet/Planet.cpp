@@ -60,13 +60,13 @@ std::istream& operator>>(std::istream& is, Planet& planet) {
 void Planet::readFromFile(const char* filename, Planet*& planets, int& size) {
     std::ifstream file(filename);
     if (!file) {
-        std::cerr << "Не удалось открыть файл для чтения." << std::endl;
+        std::cerr << "не удалось открыть файл для чтения" << std::endl;
         return;
     }
 
     file >> size;
     file.ignore();
-    std::cout << "Прочитан размер: " << size << std::endl;
+    std::cout << "прочитан размер: " << size << std::endl;
 
     if (planets != nullptr) {
         delete[] planets;
@@ -82,12 +82,11 @@ void Planet::readFromFile(const char* filename, Planet*& planets, int& size) {
         int life;
 
         if (file >> name >> diam >> sat >> life) {
-            std::cout << "Попытка создания планеты " << i << ": " << name << " " << diam << " " << sat << " " << life << std::endl;
+            std::cout << "попытка создания планеты " << i << ": " << name << " " << diam << " " << sat << " " << life << std::endl;
 
             planets[i] = Planet(name, diam, sat, life != 0);
-            std::cout << "Планета " << i << " успешно создана" << std::endl;
         } else {
-            std::cerr << "Ошибка при чтении планеты " << i << std::endl;
+            std::cerr << "ошибка при чтении планеты " << i << std::endl;
             break;
         }
     }
@@ -98,7 +97,7 @@ void Planet::readFromFile(const char* filename, Planet*& planets, int& size) {
 void Planet::writeToFile(const char* filename, const Planet* planets, int size) {
     std::ofstream file(filename);
     if (!file) {
-        std::cerr << "Не удалось открыть файл для записи." << std::endl;
+        std::cerr << "не удалось открыть файл для записи." << std::endl;
         return;
     }
 
@@ -135,7 +134,7 @@ void Planet::addPlanet(Planet*& planets, int& size, const Planet& newPlanet) {
 
 void Planet::removePlanet(Planet*& planets, int& size, int index) {
     if (index < 0 || index >= size) {
-        std::cerr << "Неверный индекс для удаления." << std::endl;
+        std::cerr << "неверный индекс для удаления" << std::endl;
         return;
     }
 
@@ -152,7 +151,7 @@ void Planet::removePlanet(Planet*& planets, int& size, int index) {
 }
 
 void Planet::editPlanet(Planet& planet) {
-    std::cout << "Введите новые данные для планеты:" << std::endl;
+    std::cout << "введите новые данные для планеты:" << std::endl;
     std::cin >> planet;
 }
 
