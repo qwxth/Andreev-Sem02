@@ -111,7 +111,15 @@ void Planet::writeToFile(const char* filename, const Planet* planets, int size) 
 }
 
 void Planet::sortPlanets(Planet* planets, int size) {
-    std::sort(planets, planets + size);
+    for (int i = 0; i < size - 1; ++i) {
+        for (int j = 0; j < size - i - 1; ++j) {
+            if (planets[j + 1] < planets[j]) {
+                Planet temp = planets[j];
+                planets[j] = planets[j + 1];
+                planets[j + 1] = temp;
+            }
+        }
+    }
 }
 
 void Planet::addPlanet(Planet*& planets, int& size, const Planet& newPlanet) {
