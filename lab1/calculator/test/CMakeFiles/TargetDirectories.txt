@@ -1,9 +1,0 @@
-/home/oem/labs/Andreev-Sem02/lab1/calculator/test/CMakeFiles/lab1.dir
-/home/oem/labs/Andreev-Sem02/lab1/calculator/test/CMakeFiles/edit_cache.dir
-/home/oem/labs/Andreev-Sem02/lab1/calculator/test/CMakeFiles/rebuild_cache.dir
-/home/oem/labs/Andreev-Sem02/lab1/calculator/test/mymath/CMakeFiles/mymath.dir
-/home/oem/labs/Andreev-Sem02/lab1/calculator/test/mymath/CMakeFiles/edit_cache.dir
-/home/oem/labs/Andreev-Sem02/lab1/calculator/test/mymath/CMakeFiles/rebuild_cache.dir
-/home/oem/labs/Andreev-Sem02/lab1/calculator/test/myproduct/CMakeFiles/myproduct.dir
-/home/oem/labs/Andreev-Sem02/lab1/calculator/test/myproduct/CMakeFiles/edit_cache.dir
-/home/oem/labs/Andreev-Sem02/lab1/calculator/test/myproduct/CMakeFiles/rebuild_cache.dir

@@ -1,3 +1,0 @@
-/home/oem/labs/Andreev-Sem02/lab1/project/test/CMakeFiles/lab1.dir
-/home/oem/labs/Andreev-Sem02/lab1/project/test/CMakeFiles/edit_cache.dir
-/home/oem/labs/Andreev-Sem02/lab1/project/test/CMakeFiles/rebuild_cache.dir
