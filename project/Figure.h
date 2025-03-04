@@ -1,21 +1,22 @@
 // Figure.h
-#ifndef CHESSFIGURE_H
-#define CHESSFIGURE_H
+#ifndef FIGURE_H
+#define FIGURE_H
 
+#include <string>
 #include <iostream>
 
 class Figure {
  private:
-    char* name;
-    char* color;
-    char* position
+    std::string name;
+    std::string color;
+    std::string position;
  public:
-    Figure(const char* name, const char* color, const char* position);
+    Figure(const std::string name, const std::string color, const std::string position);
     ~Figure();
 
-    char GetName() const;
-    char GetColor() const;
-    char GetPosition() const;
+    std::string GetName() const;
+    std::string GetColor() const;
+    std::string GetPosition() const;
 
 };
 

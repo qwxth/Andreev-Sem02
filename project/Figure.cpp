@@ -3,37 +3,31 @@
 #include <algorithm>
 #include <cstring>
 #include <fstream>
+#include <string>
 
-Figure::Figure(char* name, char* color, char* position) {
-    name = h;
-    color = m;
-    position = s;
+Figure::Figure(std::string n, std::string c, std::string p) {
+    name = n;
+    color = c;
+    position = p;
 }
 
 Figure::~Figure() {
-    delete[] name;
-    delete[] color;
-    delete[] position;
-    name = nullptr;
-    color = nullptr;
-    position = nullptr;
 }
 
-char Figure::GetName() const {
+std::string Figure::GetName() const {
     return name;
 }
 
-char Figure::GetColor() const {
+std::string Figure::GetColor() const {
     return color;
 }
 
-char Figure::GetPosition() const {
+std::string Figure::GetPosition() const {
     return position;
 }
 
 int main() {
-    Figure figure(king, white, e1);
-
-    std::cout << figure.GetName << std::endl;
+    Figure figure("king", "white", "e1");
+    std::cout << figure.GetName() << std::endl;
     return 0;
 }
