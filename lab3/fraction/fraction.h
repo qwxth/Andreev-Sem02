@@ -7,6 +7,7 @@ class fraction {
  private:
     int numerator;
     int denominator;
+
     void reduce();
     int gcd(int a, int b);
     void normalize();
@@ -32,4 +33,4 @@ class fraction {
     friend std::istream& operator>>(std::istream& in, fraction& f);
 };
 
-#endif
+#endif  // FRACTION_H
