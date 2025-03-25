@@ -6,11 +6,12 @@
 #include <string>
 
 void Print(){
-    std::cout << "-----------------------------------------" << std::endl;
+    std::cout << "   -----------------------------------------" << std::endl;
     for (int i = 0; i < 8; ++i) {
-        std::cout << "|    |    |    |    |    |    |    |    |" << std::endl;
-        std::cout << "-----------------------------------------" << std::endl;
+        std::cout << 8 - i << "  |    |    |    |    |    |    |    |    |" << std::endl;
+        std::cout << "   -----------------------------------------" << std::endl;
     }
+    std::cout << "      a    b    c    d    e    f    g    h  " << std::endl;
 }
 
 int main() {
