@@ -25,9 +25,3 @@ std::string Figure::GetColor() const {
 std::string Figure::GetPosition() const {
     return position;
 }
-
-int main() {
-    Figure figure("king", "white", "e1");
-    std::cout << figure.GetName() << std::endl;
-    return 0;
-}

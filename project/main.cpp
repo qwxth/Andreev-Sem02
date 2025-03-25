@@ -1,5 +1,26 @@
 
-int main() {
+#include <cstring>
+#include <iostream>
 
-    return 0;
+void demo() {
+
+}
+
+void interactive() {
+
+}
+
+int main(int argc, char* argv[]) {
+    bool isInteractive = false;
+
+    if ((argc == 2) && strcmp(argv[1], "i") == 0) {
+        isInteractive = true;
+    }
+
+    if (isInteractive) {
+        interactive();
+
+    } else {
+        demo();
+    }
 }
