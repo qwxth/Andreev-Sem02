@@ -1,0 +1,4 @@
+/home/oem/labs/Andreev-Sem02/lab4/build/CMakeFiles/mystack_lib.dir
+/home/oem/labs/Andreev-Sem02/lab4/build/CMakeFiles/lab4.dir
+/home/oem/labs/Andreev-Sem02/lab4/build/CMakeFiles/edit_cache.dir
+/home/oem/labs/Andreev-Sem02/lab4/build/CMakeFiles/rebuild_cache.dir
