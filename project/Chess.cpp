@@ -66,11 +66,11 @@ int main() {
     board[6] = {" ♟ ", " ♟ ", " ♟ ", " ♟ ", " ♟ ", " ♟ ", " ♟ ", " ♟ "};
 
     Print(board);
+    while(true) {
+        std::string move;
+        std::cin >> move;
 
-    std::string move;
-    std::cin >> move;
-
-    Print(board, move);
-
+        Print(board, move);
+    }
     return 0;
 }
