@@ -7,38 +7,68 @@
 #include <vector>
 #include <iomanip>
 
-void Print(){
-    std::cout << "   -----------------------------------------" << std::endl;
-    for (int i = 0; i < 8; ++i) {
-        std::cout << 8 - i << "  |";
-        for (int j = 0; j < 8; ++j) {
-            std::cout << std::setw(5) << "|";
+void Print(std::vector<std::string>& board, const std::string& move = "") {
+    // Обработка хода, если он передан
+    if (!move.empty() && move.size() == 5 && move[2] == '-') {
+        std::string from = move.substr(0, 2);
+        std::string to = move.substr(3, 2);
+
+        // Преобразование координат (например, "e2" -> [6][4])
+        int from_row = 8 - (from[1] - '0');
+        int from_col = tolower(from[0]) - 'a';
+        int to_row = 8 - (to[1] - '0');
+        int to_col = tolower(to[0]) - 'a';
+
+        // Проверка корректности координат
+        if (from_row >= 0 && from_row < 8 && from_col >= 0 && from_col < 8 &&
+            to_row >= 0 && to_row < 8 && to_col >= 0 && to_col < 8) {
+
+            // Выполнение хода
+            board[to_row][to_col] = board[from_row][from_col];
+            board[from_row][from_col] = ' ';
         }
-        std::cout << std::endl;
-        std::cout << "   -----------------------------------------" << std::endl;
     }
-    std::cout << "      a    b    c    d    e    f    g    h  " << std::endl;
+
+    // Отображение доски
+    std::cout << "   a   b   c   d   e   f   g   h\n";
+    std::cout << " +---+---+---+---+---+---+---+---+\n";
+
+    for (int i = 0; i < 8; ++i) {
+        std::cout << 8 - i << "|";
+        for (int j = 0; j < 8; ++j) {
+            char piece = board[i][j];
+            std::cout << " " << (piece == ' ' ? ' ' : piece) << " |";
+        }
+        std::cout << 8 - i << "\n +---+---+---+---+---+---+---+---+\n";
+    }
+
+    std::cout << "   a   b   c   d   e   f   g   h\n";
+}
+
+void FirstPlayerStep(){}
+
+void SecondPlayerStep(){}
+
+void StartApp(bool gameGoing) {
+    while (gameGoing == true) {
+        FirstPlayerStep();
+        SecondPlayerStep();
+
+    }
 }
 
 int main() {
-    Figure figure1("king", "white", "e2");
-    Figure figure2("elefant", "white", "e1");
-    Figure figure3("pown", "white", "e3");
-
-    Figure figure4("rook", "white", "e4");
-    Figure figure5("quin", "white", "e5");
-
-
-    std::vector<Figure> figures = {figure1, figure2, figure3, figure4, figure5};
-
-    std::cout << figures[0].GetName() << std::endl;
-    std::cout << figures[0].GetPosition() << std::endl;
-
-    std::cout << figures[1].GetName() << std::endl;
-    std::cout << figures[2].GetName() << std::endl;
-
-
-    Print();
+    std::vector<std::string> board = {
+        "rnbqkbnr",
+        "pppppppp",
+        "        ",
+        "        ",
+        "        ",
+        "        ",
+        "PPPPPPPP",
+        "RNBQKBNR"
+    };
+    Print(board);
 
     return 0;
 }
