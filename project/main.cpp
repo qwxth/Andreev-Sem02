@@ -1,3 +1,4 @@
+#include "Chess.h"
 
 #include <cstring>
 #include <iostream>
@@ -18,9 +19,10 @@ int main(int argc, char* argv[]) {
     }
 
     if (isInteractive) {
-        interactive();
+        StartApp();
 
     } else {
         demo();
     }
+    return 0;
 }

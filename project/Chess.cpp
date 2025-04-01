@@ -1,4 +1,5 @@
 #include "Figure.h"
+#include "Chess.h"
 
 #include <algorithm>
 #include <cstring>
@@ -22,7 +23,11 @@ void Print(std::vector<std::vector<std::string>>& board) {
     std::cout << "    a    b    c    d    e    f    g    h\n";
 }
 
-void Move(std::vector<std::vector<std::string>>& board, const std::string& move = ""){
+void Move(std::vector<std::vector<std::string>>& board){
+
+    std::string move;
+    std::cin >> move;
+
     if (!move.empty() && move.size() == 5 && move[2] == '-') {
         std::string from = move.substr(0, 2);
         std::string to = move.substr(3, 2);
@@ -44,7 +49,7 @@ void FirstPlayerStep(){}
 
 void SecondPlayerStep(){}
 
-bool KingCheck(std::vector<std::vector<std::string>>& board){
+int GameEnding(std::vector<std::vector<std::string>>& board) {
     int countKing = 0;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j<8; j++) {
@@ -53,25 +58,17 @@ bool KingCheck(std::vector<std::vector<std::string>>& board){
             }
         }
     }
-    return countKing != 2;
-}
-
-int GameEnding(std::vector<std::vector<std::string>>& board) {
-    if (KingCheck(board)) {
+    if (countKing != 2) {
         return 1;
     }
     return 0;
 }
 
-void StartApp(std::vector<std::vector<std::string>>& board) {
+void Game(std::vector<std::vector<std::string>>& board) {
     bool GameContinues = true;
     while(GameContinues) {
         Print(board);
-
-        std::string move;
-        std::cin >> move;
-
-        Move(board, move);
+        Move(board);
 
         if (GameEnding(board) == 1) {
             GameContinues = false;
@@ -80,7 +77,7 @@ void StartApp(std::vector<std::vector<std::string>>& board) {
     std::cout << "Игра конченая" << std::endl;
 }
 
-int main() {
+int StartApp() {
     std::vector<std::vector<std::string>> board(8, std::vector<std::string>(8, " "));
 
     board[0] = {" ♜ ", " ♞ ", " ♝ ", " ♛ ", " ♚ ", " ♝ ", " ♞ ", " ♜ "};
@@ -89,7 +86,7 @@ int main() {
     board[7] = {" ♜ ", " ♞ ", " ♝ ", " ♛ ", " ♚ ", " ♝ ", " ♞ ", " ♜ "};
     board[6] = {" ♟ ", " ♟ ", " ♟ ", " ♟ ", " ♟ ", " ♟ ", " ♟ ", " ♟ "};
 
-    StartApp(board);
+    Game(board);
 
     return 0;
 }
