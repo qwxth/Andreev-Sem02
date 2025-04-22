@@ -50,9 +50,7 @@ void interactive() {
     stackChar.push('c');
 
     MyStack<char> stackChar2;
-    MyStack.copy
-
-
+    stackChar2 = stackChar;
 
     int n = 0;
     std::cout << "ведите число" << std::endl;
