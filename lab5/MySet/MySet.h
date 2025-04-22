@@ -1,16 +1,18 @@
 #ifndef MYSET_H
 #define MYSET_H
 
-#include <algorithm>
 #include "../MyVector/MyVector.h"
+#include <algorithm>
 
 class MySet : public MyVector<char*> {
- public:
+public:
     MySet(size_t initial_size = 1) : MyVector<char*>(initial_size) {}
     MySet(const char* str) : MyVector<char*>(str) {}
     MySet(const MySet& other) : MyVector<char*>(other) {}
 
-    bool is_element(const char* element) const { return find(element) != -1; }
+    bool is_element(const char* element) const {
+        return find(element) != -1;
+    }
 
     void add_element(const char* element) {
         if (!is_element(element)) {
@@ -41,7 +43,7 @@ class MySet : public MyVector<char*> {
     }
 
     MySet& operator*=(const MySet& other) {
-        for (size_t i = 0; i < get_size();) {
+        for (size_t i = 0; i < get_size(); ) {
             if (!other.is_element((*this)[i])) {
                 delete_element((*this)[i]);
             } else {
@@ -79,11 +81,9 @@ inline MySet operator*(const MySet& a, const MySet& b) {
 }
 
 inline bool operator==(const MySet& a, const MySet& b) {
-    if (a.get_size() != b.get_size())
-        return false;
+    if (a.get_size() != b.get_size()) return false;
     for (size_t i = 0; i < a.get_size(); ++i) {
-        if (!b.is_element(a[i]))
-            return false;
+        if (!b.is_element(a[i])) return false;
     }
     return true;
 }
@@ -94,4 +94,4 @@ inline std::ostream& operator<<(std::ostream& os, const MySet& set) {
 
 #define MAX_SIZE 100
 
-#endif  // MYSET_H
+#endif // MYSET_H

@@ -1,6 +1,6 @@
 #include <iostream>
-#include "MySet/MySet.h"
 #include "MyVector/MyVector.h"
+#include "MySet/MySet.h"
 
 int main() {
     setlocale(LC_ALL, "Russian");
@@ -24,7 +24,7 @@ int main() {
     MySet s("Yes"), s1, s2;
     s.add_element("Привет!");
     s.add_element("No");
-    char* str = "Hello!";
+    char *str = "Hello!";
     s.add_element(str);
     std::cout << "Множество s: " << s << std::endl;
     s1.add_element("Cat");
