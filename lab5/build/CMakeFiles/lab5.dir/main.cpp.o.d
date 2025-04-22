@@ -149,14 +149,14 @@ CMakeFiles/lab5.dir/main.cpp.o: \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc \
- /home/oem/labs/Andreev-Sem02/lab5/MySet/MySet.h \
+ /home/oem/labs/Andreev-Sem02/lab5/MyVector/MyVector.h \
  /usr/include/c++/13/algorithm /usr/include/c++/13/bits/stl_algo.h \
  /usr/include/c++/13/bits/algorithmfwd.h \
  /usr/include/c++/13/bits/stl_heap.h \
  /usr/include/c++/13/bits/uniform_int_dist.h \
  /usr/include/c++/13/bits/stl_tempbuf.h \
  /usr/include/c++/13/pstl/glue_algorithm_defs.h \
- /usr/include/c++/13/pstl/execution_defs.h \
- /home/oem/labs/Andreev-Sem02/lab5/MySet/../MyVector/MyVector.h \
- /usr/include/c++/13/cstring /usr/include/string.h /usr/include/strings.h \
- /home/oem/labs/Andreev-Sem02/lab5/MyVector/MyVector.h
+ /usr/include/c++/13/pstl/execution_defs.h /usr/include/c++/13/cstring \
+ /usr/include/string.h /usr/include/strings.h \
+ /home/oem/labs/Andreev-Sem02/lab5/MySet/MySet.h \
+ /home/oem/labs/Andreev-Sem02/lab5/MySet/../MyVector/MyVector.h

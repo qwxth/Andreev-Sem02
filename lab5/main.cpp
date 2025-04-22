@@ -16,48 +16,49 @@ int main() {
     std::cout << "Вектор elements: " << elements << std::endl;
     MyVector<char*> elements1 = elements;
     std::cout << "Вектор elements1: " << elements1 << std::endl;
-    for (int i = 0; i < maxSize; i++)
+    for (int i = 0; i < MaxSize; i++)
         elements1.deleteElement(0);
     std::cout << "Вектор elements1: " << elements1 << std::endl;
-    MySet s("Yes"), s1, s2;
-    s.addElement("Привет!");
-    s.addElement("No");
+    MySet set("Yes"), set1, set2;
+    set.addElement("Привет!");
+    set.addElement("No");
     char *str = "Hello!";
-    s.addElement(str);
-    std::cout << "Множество s: " << s << std::endl;
-    s1.addElement("Cat");
-    s1.addElement("No");
-    s1.addElement("Привет!");
-    std::cout << "Множество s1: " << s1 << std::endl;
-    s2 = s1 - s;
-    std::cout << "Множество s2=s1-s: " << s2 << std::endl;
-    std::cout << "Множество s1: " << s1 << std::endl;
-    std::cout << "Множество s: " << s << std::endl;
-    s2 = s - s1;
-    std::cout << "Множество s2=s-s1: " << s2 << std::endl;
-    std::cout << "Множество s1: " << s1 << std::endl;
-    std::cout << "Множество s: " << s << std::endl;
-    s2 = s1 + s;
-    std::cout << "Множество s2=s1+s: " << s2 << std::endl;
-    std::cout << "Множество s1: " << s1 << std::endl;
-    std::cout << "Множество s: " << s << std::endl;
-    s2 = s1 * s;
-    std::cout << "Множество s2=s1*s: " << s2 << std::endl;
-    std::cout << "Множество s1: " << s1 << std::endl;
-    std::cout << "Множество s: " << s << std::endl;
-    MySet s3 = s2;
-    std::cout << "Множество s3=s2: " << s3 << std::endl;
-    if (s3 == s2)
-        std::cout << "Множество s3=s2\n";
+    set.addElement(str);
+    std::cout << "Множество set: " << set << std::endl;
+    set1.addElement("Cat");
+    set1.addElement("No");
+    set1.addElement("Привет!");
+    set1.addElement("Привет!");
+    std::cout << "Множество set1: " << set1 << std::endl;
+    set2 = set1 - set;
+    std::cout << "Множество set2=set1-set: " << set2 << std::endl;
+    std::cout << "Множество set1: " << set1 << std::endl;
+    std::cout << "Множество set: " << set << std::endl;
+    set2 = set - set1;
+    std::cout << "Множество set2=set-set1: " << set2 << std::endl;
+    std::cout << "Множество set1: " << set1 << std::endl;
+    std::cout << "Множество set: " << set << std::endl;
+    set2 = set1 + set;
+    std::cout << "Множество set2=set1+set: " << set2 << std::endl;
+    std::cout << "Множество set1: " << set1 << std::endl;
+    std::cout << "Множество set: " << set << std::endl;
+    set2 = set1 * set;
+    std::cout << "Множество set2=set1*set: " << set2 << std::endl;
+    std::cout << "Множество set1: " << set1 << std::endl;
+    std::cout << "Множество set: " << set << std::endl;
+    MySet set3 = set2;
+    std::cout << "Множество set3=set2: " << set3 << std::endl;
+    if (set3 == set2)
+        std::cout << "Множество set3=set2\n";
     else
-        std::cout << "Множество s3!=s2\n";
-    if (s3 == s1)
-        std::cout << "Множество s3=s1\n";
+        std::cout << "Множество set3!=set2\n";
+    if (set3 == set1)
+        std::cout << "Множество set3=set1\n";
     else
-        std::cout << "Множество s3!=s1\n";
-    if (s1 == s3)
-        std::cout << "Множество s1=s3\n";
+        std::cout << "Множество set3!=set1\n";
+    if (set1 == set3)
+        std::cout << "Множество set1=set3\n";
     else
-        std::cout << "Множество s1!=s3\n";
+        std::cout << "Множество set1!=set3\n";
     return 0;
 }

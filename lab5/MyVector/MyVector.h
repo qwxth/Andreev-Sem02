@@ -10,29 +10,29 @@ class MyVector {
 protected:
     T* pdata;
     size_t size;
-    size_t max_size;
+    size_t maxSize;
 
-    void resize(size_t new_size) {
-        if(new_size < 1) new_size = 1;
-        T* new_data = new T[new_size];
-        std::copy(pdata, pdata + size, new_data);
+    void resize(size_t newsize) {
+        if(newsize < 1) newsize = 1;
+        T* newData = new T[newsize];
+        std::copy(pdata, pdata + size, newData);
         delete[] pdata;
-        pdata = new_data;
-        max_size = new_size;
+        pdata = newData;
+        maxSize = newsize;
     }
 
 public:
-    MyVector(size_t initial_size = 1) : size(0), max_size(initial_size) {
-        pdata = new T[max_size];
+    MyVector(size_t initialSize = 1) : size(0), maxSize(initialSize) {
+        pdata = new T[maxSize];
     }
 
-    MyVector(const T& first_element) : size(1), max_size(1) {
+    MyVector(const T& firstElement) : size(1), maxSize(1) {
         pdata = new T[1];
-        pdata[0] = first_element;
+        pdata[0] = firstElement;
     }
 
-    MyVector(const MyVector& other) : size(other.size), max_size(other.max_size) {
-        pdata = new T[max_size];
+    MyVector(const MyVector& other) : size(other.size), maxSize(other.maxSize) {
+        pdata = new T[maxSize];
         std::copy(other.pdata, other.pdata + size, pdata);
     }
 
@@ -44,14 +44,14 @@ public:
         if(this == &other) return *this;
         delete[] pdata;
         size = other.size;
-        max_size = other.max_size;
-        pdata = new T[max_size];
+        maxSize = other.maxSize;
+        pdata = new T[maxSize];
         std::copy(other.pdata, other.pdata + size, pdata);
         return *this;
     }
 
     virtual void addElement(const T& element) {
-        if(size >= max_size) resize(max_size * 2);
+        if(size >= maxSize) resize(maxSize * 2);
         pdata[size++] = element;
     }
 
@@ -61,7 +61,7 @@ public:
             pdata[i] = pdata[i + 1];
         }
         size--;
-        if(size < max_size / 4 && max_size > 1) resize(max_size / 2);
+        if(size < maxSize / 4 && maxSize > 1) resize(maxSize / 2);
     }
 
     int find(const T& element) const {
@@ -86,12 +86,12 @@ public:
     }
 
     size_t getSize() const { return size; }
-    size_t getMaxSize() const { return max_size; }
+    size_t getMaxSize() const { return maxSize; }
 };
 
 template<>
 void MyVector<int>::addElement(const int& element) {
-    if(size >= max_size) resize(max_size * 2);
+    if(size >= maxSize) resize(maxSize * 2);
     pdata[size++] = element;
 }
 
@@ -100,30 +100,30 @@ class MyVector<char*> {
 protected:
     char** pdata;
     size_t size;
-    size_t max_size;
+    size_t maxSize;
 
-    void resize(size_t new_size) {
-        if(new_size < 1) new_size = 1;
-        char** new_data = new char*[new_size];
-        std::copy(pdata, pdata + size, new_data);
+    void resize(size_t newsize) {
+        if(newsize < 1) newsize = 1;
+        char** newData = new char*[newsize];
+        std::copy(pdata, pdata + size, newData);
         delete[] pdata;
-        pdata = new_data;
-        max_size = new_size;
+        pdata = newData;
+        maxSize = newsize;
     }
 
 public:
-    MyVector(const char* str) : size(1), max_size(1) {
+    MyVector(const char* str) : size(1), maxSize(1) {
         pdata = new char*[1];
         pdata[0] = new char[strlen(str) + 1];
         strcpy(pdata[0], str);
     }
 
-    MyVector(size_t initial_size = 1) : size(0), max_size(initial_size) {
-        pdata = new char*[max_size];
+    MyVector(size_t initialSize = 1) : size(0), maxSize(initialSize) {
+        pdata = new char*[maxSize];
     }
 
-    MyVector(const MyVector& other) : size(other.size), max_size(other.max_size) {
-        pdata = new char*[max_size];
+    MyVector(const MyVector& other) : size(other.size), maxSize(other.maxSize) {
+        pdata = new char*[maxSize];
         for(size_t i = 0; i < size; ++i) {
             pdata[i] = new char[strlen(other.pdata[i]) + 1];
             strcpy(pdata[i], other.pdata[i]);
@@ -146,8 +146,8 @@ public:
         delete[] pdata;
 
         size = other.size;
-        max_size = other.max_size;
-        pdata = new char*[max_size];
+        maxSize = other.maxSize;
+        pdata = new char*[maxSize];
 
         for(size_t i = 0; i < size; ++i) {
             pdata[i] = new char[strlen(other.pdata[i]) + 1];
@@ -158,7 +158,7 @@ public:
     }
 
     void addElement(const char* element) {
-        if(size >= max_size) resize(max_size * 2);
+        if(size >= maxSize) resize(maxSize * 2);
         pdata[size] = new char[strlen(element) + 1];
         strcpy(pdata[size], element);
         size++;
@@ -174,7 +174,7 @@ public:
         }
 
         size--;
-        if(size < max_size / 4 && max_size > 1) resize(max_size / 2);
+        if(size < maxSize / 4 && maxSize > 1) resize(maxSize / 2);
     }
 
     int find(const char* element) const {
@@ -201,7 +201,7 @@ public:
     }
 
     size_t getSize() const { return size; }
-    size_t getMaxSize() const { return max_size; }
+    size_t getMaxSize() const { return maxSize; }
 };
 
 std::ostream& operator<<(std::ostream& os, const MyVector<int>& vec) {

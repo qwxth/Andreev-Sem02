@@ -6,7 +6,7 @@
 
 class MySet : public MyVector<char*> {
 public:
-    MySet(size_t initial_size = 1) : MyVector<char*>(initial_size) {}
+    MySet(size_t initialSize = 1) : MyVector<char*>(initialSize) {}
     MySet(const char* str) : MyVector<char*>(str) {}
     MySet(const MySet& other) : MyVector<char*>(other) {}
 
@@ -92,6 +92,6 @@ inline std::ostream& operator<<(std::ostream& os, const MySet& set) {
     return os << static_cast<const MyVector<char*>&>(set);
 }
 
-#define maxSize 100
+#define MaxSize 100
 
 #endif // MYSET_H
