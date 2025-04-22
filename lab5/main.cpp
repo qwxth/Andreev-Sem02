@@ -19,6 +19,7 @@ int main() {
     for (int i = 0; i < MaxSize; i++)
         elements1.deleteElement(0);
     std::cout << "Вектор elements1: " << elements1 << std::endl;
+
     MySet set("Yes"), set1, set2;
     set.addElement("Привет!");
     set.addElement("No");
@@ -27,6 +28,10 @@ int main() {
     std::cout << "Множество set: " << set << std::endl;
     set1.addElement("Cat");
     set1.addElement("No");
+    set1.addElement("Привет!");
+    set1.addElement("Привет!");
+    set1.addElement("Привет!");
+    set1.addElement("Привет!");
     set1.addElement("Привет!");
     set1.addElement("Привет!");
     std::cout << "Множество set1: " << set1 << std::endl;
