@@ -10,42 +10,42 @@ public:
     MySet(const char* str) : MyVector<char*>(str) {}
     MySet(const MySet& other) : MyVector<char*>(other) {}
 
-    bool is_element(const char* element) const {
+    bool isElement(const char* element) const {
         return find(element) != -1;
     }
 
-    void add_element(const char* element) {
-        if (!is_element(element)) {
-            MyVector<char*>::add_element(element);
+    void addElement(const char* element) {
+        if (!isElement(element)) {
+            MyVector<char*>::addElement(element);
             sort();
         }
     }
 
-    void delete_element(const char* element) {
+    void deleteElement(const char* element) {
         int index = find(element);
         if (index != -1) {
-            MyVector<char*>::delete_element(index);
+            MyVector<char*>::deleteElement(index);
         }
     }
 
     MySet& operator+=(const MySet& other) {
-        for (size_t i = 0; i < other.get_size(); ++i) {
-            add_element(other[i]);
+        for (size_t i = 0; i < other.getSize(); ++i) {
+            addElement(other[i]);
         }
         return *this;
     }
 
     MySet& operator-=(const MySet& other) {
-        for (size_t i = 0; i < other.get_size(); ++i) {
-            delete_element(other[i]);
+        for (size_t i = 0; i < other.getSize(); ++i) {
+            deleteElement(other[i]);
         }
         return *this;
     }
 
     MySet& operator*=(const MySet& other) {
-        for (size_t i = 0; i < get_size(); ) {
-            if (!other.is_element((*this)[i])) {
-                delete_element((*this)[i]);
+        for (size_t i = 0; i < getSize(); ) {
+            if (!other.isElement((*this)[i])) {
+                deleteElement((*this)[i]);
             } else {
                 ++i;
             }
@@ -56,34 +56,34 @@ public:
 
 inline MySet operator+(const MySet& a, const MySet& b) {
     MySet result = a;
-    for (size_t i = 0; i < b.get_size(); ++i) {
-        result.add_element(b[i]);
+    for (size_t i = 0; i < b.getSize(); ++i) {
+        result.addElement(b[i]);
     }
     return result;
 }
 
 inline MySet operator-(const MySet& a, const MySet& b) {
     MySet result = a;
-    for (size_t i = 0; i < b.get_size(); ++i) {
-        result.delete_element(b[i]);
+    for (size_t i = 0; i < b.getSize(); ++i) {
+        result.deleteElement(b[i]);
     }
     return result;
 }
 
 inline MySet operator*(const MySet& a, const MySet& b) {
     MySet result;
-    for (size_t i = 0; i < a.get_size(); ++i) {
-        if (b.is_element(a[i])) {
-            result.add_element(a[i]);
+    for (size_t i = 0; i < a.getSize(); ++i) {
+        if (b.isElement(a[i])) {
+            result.addElement(a[i]);
         }
     }
     return result;
 }
 
 inline bool operator==(const MySet& a, const MySet& b) {
-    if (a.get_size() != b.get_size()) return false;
-    for (size_t i = 0; i < a.get_size(); ++i) {
-        if (!b.is_element(a[i])) return false;
+    if (a.getSize() != b.getSize()) return false;
+    for (size_t i = 0; i < a.getSize(); ++i) {
+        if (!b.isElement(a[i])) return false;
     }
     return true;
 }
@@ -92,6 +92,6 @@ inline std::ostream& operator<<(std::ostream& os, const MySet& set) {
     return os << static_cast<const MyVector<char*>&>(set);
 }
 
-#define MAX_SIZE 100
+#define maxSize 100
 
 #endif // MYSET_H

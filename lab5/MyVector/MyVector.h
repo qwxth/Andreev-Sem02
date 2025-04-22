@@ -50,12 +50,12 @@ public:
         return *this;
     }
 
-    virtual void add_element(const T& element) {
+    virtual void addElement(const T& element) {
         if(size >= max_size) resize(max_size * 2);
         pdata[size++] = element;
     }
 
-    void delete_element(size_t index) {
+    void deleteElement(size_t index) {
         if(index >= size) return;
         for(size_t i = index; i < size - 1; ++i) {
             pdata[i] = pdata[i + 1];
@@ -85,12 +85,12 @@ public:
         std::sort(pdata, pdata + size);
     }
 
-    size_t get_size() const { return size; }
-    size_t get_max_size() const { return max_size; }
+    size_t getSize() const { return size; }
+    size_t getMaxSize() const { return max_size; }
 };
 
 template<>
-void MyVector<int>::add_element(const int& element) {
+void MyVector<int>::addElement(const int& element) {
     if(size >= max_size) resize(max_size * 2);
     pdata[size++] = element;
 }
@@ -157,14 +157,14 @@ public:
         return *this;
     }
 
-    void add_element(const char* element) {
+    void addElement(const char* element) {
         if(size >= max_size) resize(max_size * 2);
         pdata[size] = new char[strlen(element) + 1];
         strcpy(pdata[size], element);
         size++;
     }
 
-    void delete_element(size_t index) {
+    void deleteElement(size_t index) {
         if(index >= size) return;
 
         delete[] pdata[index];
@@ -200,13 +200,13 @@ public:
         });
     }
 
-    size_t get_size() const { return size; }
-    size_t get_max_size() const { return max_size; }
+    size_t getSize() const { return size; }
+    size_t getMaxSize() const { return max_size; }
 };
 
 std::ostream& operator<<(std::ostream& os, const MyVector<int>& vec) {
     os << "\n{";
-    for(size_t i = 0; i < vec.get_size(); ++i) {
+    for(size_t i = 0; i < vec.getSize(); ++i) {
         if(i > 0) os << ", ";
         os << vec[i];
     }
@@ -215,7 +215,7 @@ std::ostream& operator<<(std::ostream& os, const MyVector<int>& vec) {
 
 std::ostream& operator<<(std::ostream& os, const MyVector<char*>& vec) {
     os << "\n{";
-    for(size_t i = 0; i < vec.get_size(); ++i) {
+    for(size_t i = 0; i < vec.getSize(); ++i) {
         if(i > 0) os << ", ";
         os << vec[i];
     }

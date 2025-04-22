@@ -3,33 +3,31 @@
 #include "MySet/MySet.h"
 
 int main() {
-    setlocale(LC_ALL, "Russian");
-
-    MyVector<char*> v("Hello!");
-    v.add_element("Привет!");
-    v.add_element("Привет!");
-    v.add_element("Привет!");
-    v.add_element("Привет!");
-    v.add_element("Привет!");
-    std::cout << "Вектор v: " << v << std::endl;
-    v.add_element("Привет!");
-    v.add_element("Привет!");
-    v.add_element("Привет!");
-    std::cout << "Вектор v: " << v << std::endl;
-    MyVector<char*> v1 = v;
-    std::cout << "Вектор v1: " << v1 << std::endl;
-    for (int i = 0; i < MAX_SIZE; i++)
-        v1.delete_element(0);
-    std::cout << "Вектор v1: " << v1 << std::endl;
+    MyVector<char*> elements("Hello!");
+    elements.addElement("Привет!");
+    elements.addElement("Привет!");
+    elements.addElement("Привет!");
+    elements.addElement("Привет!");
+    elements.addElement("Привет!");
+    std::cout << "Вектор elements: " << elements << std::endl;
+    elements.addElement("Привет!");
+    elements.addElement("Привет!");
+    elements.addElement("Привет!");
+    std::cout << "Вектор elements: " << elements << std::endl;
+    MyVector<char*> elements1 = elements;
+    std::cout << "Вектор elements1: " << elements1 << std::endl;
+    for (int i = 0; i < maxSize; i++)
+        elements1.deleteElement(0);
+    std::cout << "Вектор elements1: " << elements1 << std::endl;
     MySet s("Yes"), s1, s2;
-    s.add_element("Привет!");
-    s.add_element("No");
+    s.addElement("Привет!");
+    s.addElement("No");
     char *str = "Hello!";
-    s.add_element(str);
+    s.addElement(str);
     std::cout << "Множество s: " << s << std::endl;
-    s1.add_element("Cat");
-    s1.add_element("No");
-    s1.add_element("Привет!");
+    s1.addElement("Cat");
+    s1.addElement("No");
+    s1.addElement("Привет!");
     std::cout << "Множество s1: " << s1 << std::endl;
     s2 = s1 - s;
     std::cout << "Множество s2=s1-s: " << s2 << std::endl;
