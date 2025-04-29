@@ -2,6 +2,8 @@
 #include "MyVector/MyVector.h"
 #include "MySet/MySet.h"
 
+const int MaxSize = 100;
+
 int main() {
     MyVector<char*> elements("Hello!");
     elements.addElement("Привет!");
