@@ -1,19 +1,33 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.10)
+project(Chess LANGUAGES CXX)
 
-set(project "project")
-project(${project})
+# Устанавливаем стандарт C++14 (для std::make_unique)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(CMAKE_CXX_STANDARD 17)
+# Включаем предупреждения компилятора
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    add_compile_options(-Wall -Wextra -Wpedantic)
+elseif(MSVC)
+    add_compile_options(/W4)
+endif()
 
-set(${project}_SOURCES
-        main.cpp)
+# Список исходных файлов
+set(SOURCES
+    main.cpp
+    Figure.cpp
+    ChessBoard.cpp
+)
 
-add_subdirectory(fraction)
+# Список заголовочных файлов
+set(HEADERS
+    Figure.h
+    ChessBoard.h
+)
 
-set(${project}_SOURCE_LIST
-        ${${project}_SOURCES})
+# Создание исполняемого файла
+add_executable(chess ${SOURCES} ${HEADERS})
 
-add_executable(${project}
-        ${${project}_SOURCE_LIST})
-
-target_link_libraries(${project} fraction)
+# Указываем каталоги для поиска заголовочных файлов
+target_include_directories(chess PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
