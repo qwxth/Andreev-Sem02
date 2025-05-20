@@ -7,6 +7,7 @@
 
 class PieceTextures{
 public:
+
     static sf::Texture blackKing;
     static sf::Texture blackQueen;
     static sf::Texture blackRook;
