@@ -1,3 +1,5 @@
-/home/oem/labs/Andreev-Sem02/project/build/CMakeFiles/chess.dir
 /home/oem/labs/Andreev-Sem02/project/build/CMakeFiles/edit_cache.dir
 /home/oem/labs/Andreev-Sem02/project/build/CMakeFiles/rebuild_cache.dir
+/home/oem/labs/Andreev-Sem02/project/build/src/CMakeFiles/Chess-SFML.dir
+/home/oem/labs/Andreev-Sem02/project/build/src/CMakeFiles/edit_cache.dir
+/home/oem/labs/Andreev-Sem02/project/build/src/CMakeFiles/rebuild_cache.dir

@@ -117,89 +117,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named chess
+# Target rules for targets named Chess-SFML
 
 # Build rule for target.
-chess: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chess
-.PHONY : chess
+Chess-SFML: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Chess-SFML
+.PHONY : Chess-SFML
 
 # fast build rule for target.
-chess/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/build
-.PHONY : chess/fast
-
-ChessBoard.o: ChessBoard.cpp.o
-.PHONY : ChessBoard.o
-
-# target to build an object file
-ChessBoard.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/ChessBoard.cpp.o
-.PHONY : ChessBoard.cpp.o
-
-ChessBoard.i: ChessBoard.cpp.i
-.PHONY : ChessBoard.i
-
-# target to preprocess a source file
-ChessBoard.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/ChessBoard.cpp.i
-.PHONY : ChessBoard.cpp.i
-
-ChessBoard.s: ChessBoard.cpp.s
-.PHONY : ChessBoard.s
-
-# target to generate assembly for a file
-ChessBoard.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/ChessBoard.cpp.s
-.PHONY : ChessBoard.cpp.s
-
-Figure.o: Figure.cpp.o
-.PHONY : Figure.o
-
-# target to build an object file
-Figure.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/Figure.cpp.o
-.PHONY : Figure.cpp.o
-
-Figure.i: Figure.cpp.i
-.PHONY : Figure.i
-
-# target to preprocess a source file
-Figure.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/Figure.cpp.i
-.PHONY : Figure.cpp.i
-
-Figure.s: Figure.cpp.s
-.PHONY : Figure.s
-
-# target to generate assembly for a file
-Figure.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/Figure.cpp.s
-.PHONY : Figure.cpp.s
-
-main.o: main.cpp.o
-.PHONY : main.o
-
-# target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/main.cpp.o
-.PHONY : main.cpp.o
-
-main.i: main.cpp.i
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/main.cpp.s
-.PHONY : main.cpp.s
+Chess-SFML/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/Chess-SFML.dir/build.make src/CMakeFiles/Chess-SFML.dir/build
+.PHONY : Chess-SFML/fast
 
 # Help Target
 help:
@@ -209,16 +137,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... chess"
-	@echo "... ChessBoard.o"
-	@echo "... ChessBoard.i"
-	@echo "... ChessBoard.s"
-	@echo "... Figure.o"
-	@echo "... Figure.i"
-	@echo "... Figure.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... Chess-SFML"
 .PHONY : help
 
 
