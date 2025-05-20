@@ -1,7 +1,3 @@
-/*
-    This header file contains the Piece class.
-*/
-
 #ifndef _PIECE_H
 #define _PIECE_H
 
@@ -45,11 +41,11 @@ public:
 private:
     sf::Sprite m_sprite;
     std::vector<int> possibleMoves;
-    std::vector<int> dangerMoves; // Moves that endanger opposite king
+    std::vector<int> dangerMoves;
 
-    char m_type; //'K'=King , 'Q' = Queen , 'R' = Rook , 'B' = Bishop , 'N' = Knight , 'P' = Pawn
-    bool m_player; // true == White , false == Black
-    int m_position; // 0-63 board, -1 dead
+    char m_type;
+    bool m_player;
+    int m_position;
     int enPassant;
     bool m_moved;
 

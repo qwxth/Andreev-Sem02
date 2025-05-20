@@ -1,19 +1,15 @@
-/*
-    This code file contains member functions of piece.h
-*/
-
 #include "piece.h"
 
 void Piece::setPiece(char type, bool player, int pos, bool moved){
     setType(type);
     setPlayer(player);
-    setPosition(pos); //m_moved true
-    setMoved(moved); // m_moved false
+    setPosition(pos);
+    setMoved(moved);
 }
 
 std::string Piece::toString(){
     std::string str;
-    
+
     str += m_player?"White ":"Black ";
 
     switch (m_type)

@@ -1,20 +1,12 @@
-/*
-    This code file contains member functions of chessGame.h
-*/
-
 #include "chessGame.h"
 
 
 ChessGame::ChessGame(sf::Color bordCol1 = sf::Color::White, sf::Color bordCol2 = sf::Color::Black)
 : board(bordCol1,bordCol2)
 {
-    // The code is taking account of these indexes.
-    // Changing them may brake normal chess rules.
-    // Comment out pieces if you want to remove some pieces at beggining.
-
     font.loadFromFile("Textures/arial.ttf");
-    
-    
+
+
     infoRestart.setFillColor(sf::Color::White);
     infoRestart.setOutlineThickness(-5.f);
     infoRestart.setOutlineColor(sf::Color::Black);
@@ -70,16 +62,16 @@ void ChessGame::restart(){
     blackPieces[6].setPiece('N', false, 1);
     blackPieces[7].setPiece('R', false, 0);
 
-    whitePieces[0].setPiece('R', true, 56); 
-    whitePieces[1].setPiece('N', true, 57); 
-    whitePieces[2].setPiece('B', true, 58); 
-    whitePieces[3].setPiece('Q', true, 59); 
-    whitePieces[4].setPiece('K', true, 60); 
-    whitePieces[5].setPiece('B', true, 61); 
-    whitePieces[6].setPiece('N', true, 62); 
-    whitePieces[7].setPiece('R', true, 63); 
+    whitePieces[0].setPiece('R', true, 56);
+    whitePieces[1].setPiece('N', true, 57);
+    whitePieces[2].setPiece('B', true, 58);
+    whitePieces[3].setPiece('Q', true, 59);
+    whitePieces[4].setPiece('K', true, 60);
+    whitePieces[5].setPiece('B', true, 61);
+    whitePieces[6].setPiece('N', true, 62);
+    whitePieces[7].setPiece('R', true, 63);
 
-    
+
     for(int i=8;i<16;i++){
         whitePieces[i].setPiece('P', true, 48 +(i-8));
         blackPieces[i].setPiece('P', false, 15 - (i-8) );
@@ -101,7 +93,7 @@ void ChessGame::updateInfo(){
             textSituation.setString("White's Turn");
         else
             textSituation.setString("Blacks's Turn");
-        
+
         if(playerTurnCheck)
             textSituation.setString(textSituation.getString() + "\nCheck");
     }
@@ -177,14 +169,14 @@ void ChessGame::createMovesSquares(){
 bool ChessGame::selectPiece(int pos){
 
     for(int i=0; i<16; i++){
-        if(playerTurn){ // If white turn
+        if(playerTurn){
             if(whitePieces[i].getPosition() == pos){
                 selectedPiece = &whitePieces[i];
                 selected = true;
                 break;
             }
         }
-        else{ // If black turn
+        else{
             if(blackPieces[i].getPosition() == pos){
                 selectedPiece = &blackPieces[i];
                 selected = true;
@@ -211,10 +203,9 @@ bool ChessGame::selectPiece(int pos){
 void ChessGame::moveSelected(int pos){
     bool validMove{false};
 
-    if((selectedPiece == NULL) || !selected ) //Probably doesnt need both
+    if((selectedPiece == NULL) || !selected )
         return;
-    
-    // Check pos with the Piece's possibleMoves
+
     for(int i=0;i<selectedPiece->getPossibleMoves().size();i++){
         if(pos == selectedPiece->getPossibleMoves().at(i)){
             validMove = true;
@@ -223,18 +214,15 @@ void ChessGame::moveSelected(int pos){
     }
 
     if(validMove){
-        
-        // If Castling Move
+
         if((selectedPiece->getType() == 'K') && (!selectedPiece->getMoved())){
             if(selectedPiece->getPlayer()){ // If white
-                // whitePieces[0] Bot Left Rook, whitePieces[7] Bot Right Rook
                 if(pos == 62)
                     whitePieces[7].setPosition(61);
                 else if(pos == 58)
                     whitePieces[0].setPosition(59);
             }
-            else{ // If Black
-                // blackPieces[7] Top Left Rook, blackPieces[0] Top Right Rook
+            else{
                 if(pos == 6)
                     blackPieces[0].setPosition(5);
                 else if(pos == 2)
@@ -243,10 +231,6 @@ void ChessGame::moveSelected(int pos){
         }
 
 
-        
-
-        // If Pawn double move (set en passant)
-        // White pawn -16, Black pawn +16
         if((selectedPiece->getType() == 'P')){
             if(!selectedPiece->getMoved()){
                 if(pos == (selectedPiece->getPosition() - 16)){
@@ -279,18 +263,18 @@ void ChessGame::moveSelected(int pos){
 
         selectedPiece->setPosition(pos);
 
-        
+
 
 
         lastMove = "Last Turn:\n" + selectedPiece->toString();
         for(int i=0; i<16; i++){
-            if(selectedPiece->getPlayer()){ // If White
+            if(selectedPiece->getPlayer()){
                 if(blackPieces[i].getPosition() == pos){
                     blackPieces[i].setPosition(-1);
                     break;
                 }
             }
-            else{ // If Black
+            else{
                 if(whitePieces[i].getPosition() == pos){
                     whitePieces[i].setPosition(-1);
                     break;
@@ -298,19 +282,19 @@ void ChessGame::moveSelected(int pos){
             }
         }
 
-        
+
 
         if(playerTurnCheck){
             playerTurnCheck = false;
         }
 
-        playerTurn = !playerTurn; // Here player turn changes
+        playerTurn = !playerTurn;
         calcPossibleMoves();
     }
-    
+
     selectedPiece = NULL;
     selected = false;
-    
+
 }
 
 
@@ -319,9 +303,8 @@ void ChessGame::calcPossibleMoves(){
 
     Piece* tmpPiece;
 
-    // LOOP for every piece
     for(int x=0; x<32; x++){
-        
+
         if(x<16)
             tmpPiece = &whitePieces[x];
         else
@@ -332,7 +315,6 @@ void ChessGame::calcPossibleMoves(){
         if(tmpPiece->getPosition() == -1)
             continue;
 
-        // Calculate Moves for tmpPiece by piece type
         switch (tmpPiece->getType())
         {
             case 'K':
@@ -360,7 +342,6 @@ void ChessGame::calcPossibleMoves(){
     }
 
 
-    // Erase illegal moves on current player's pieces
     for(int x = 0; x < 16; x++){
         if(playerTurn){
             eraseMoves(&whitePieces[x]);
@@ -374,7 +355,7 @@ void ChessGame::calcPossibleMoves(){
 
     checkMate();
 
-    
+
     updateInfo();
     turn++;
 }
@@ -389,28 +370,26 @@ void ChessGame::eraseMoves(Piece* tmpPiece){
 
 
     if(tmpPiece->getPlayer() == playerTurn){
-        
-        // Erase moves on same team pieces
-        
+
+
         for(int i = 0; i<16; i++){
             for(int j = 0; j<tmpPiece->getPossibleMoves().size();j++){
 
-                if(tmpPiece->getPlayer()){ // White
+                if(tmpPiece->getPlayer()){
                     if(tmpPiece->getPossibleMoves().at(j) == whitePieces[i].getPosition()){
                         tmpPiece->getPossibleMoves().erase( tmpPiece->getPossibleMoves().begin() + j );
                         break;
                     }
                 }
-                else{ // Black
+                else{
                     if(tmpPiece->getPossibleMoves().at(j) == blackPieces[i].getPosition()){
                         tmpPiece->getPossibleMoves().erase( tmpPiece->getPossibleMoves().begin() + j );
                         break;
-                    } 
+                    }
                 }
             }
         }
 
-        // Erase King moves on attacked squares
         if(tmpPiece->getType() == 'K'){
             for(int j=0; j < tmpPiece->getPossibleMoves().size(); j++){
                 for(int i=0; i < 16; i++){
@@ -440,7 +419,6 @@ void ChessGame::eraseMoves(Piece* tmpPiece){
         }
 
 
-        // Erase moves that put current piece's king in check        
         if(tmpPiece->getType() != 'K'){
             for(int i=0; i<16; i++){
                 if     ( playerTurn && (blackPieces[i].getDangerMoves().size() > 1) ){
@@ -510,7 +488,6 @@ void ChessGame::calcKingMoves(Piece* tmpPiece){
         tmpPiece->getPossibleMoves().push_back(piecePos + 1);
 
 
-    //calcCastling(tmpPiece);
 }
 
 
@@ -528,9 +505,8 @@ void ChessGame::calcQueenMoves(Piece* tmpPiece){
     tmpPiece->getPossibleMoves().clear();
     tmpPiece->getDangerMoves().clear();
 
-    // Queen moves left on X axis
     while( ((piecePos-posCounter) >= 0) && ((piecePos/8) == ((piecePos-posCounter)/8)) ){
-        
+
         if(!finishLoop){
             for(int i = 0; i<16; i++){
                 if(  ( whitePieces[i].getPosition() == (piecePos-posCounter) ) || ( blackPieces[i].getPosition() == (piecePos-posCounter)) ){
@@ -540,9 +516,8 @@ void ChessGame::calcQueenMoves(Piece* tmpPiece){
             }
             tmpPiece->getPossibleMoves().push_back(piecePos-posCounter);
         }
-        
+
         if(!dangerMove){
-            // whitePieces[4] is white King , blackPieces[3] is black King
             tmpPiece->getDangerMoves().push_back(piecePos-posCounter);
             if(!playerTurn){
                 if( (piecePos-posCounter) == blackPieces[3].getPosition() )
@@ -554,12 +529,11 @@ void ChessGame::calcQueenMoves(Piece* tmpPiece){
             }
 
         }
-        
+
         posCounter += 1;
     }
 
 
-    // Queen moves right on X axis
     if(!dangerMove) tmpPiece->getDangerMoves().clear();
     finishLoop = false;
     posCounter = 1;
@@ -575,7 +549,6 @@ void ChessGame::calcQueenMoves(Piece* tmpPiece){
         }
 
         if(!dangerMove){
-            // whitePieces[4] is white King , blackPieces[3] is black King
             tmpPiece->getDangerMoves().push_back(piecePos+posCounter);
             if(!playerTurn){
                 if( (piecePos+posCounter) == blackPieces[3].getPosition() )
@@ -587,10 +560,9 @@ void ChessGame::calcQueenMoves(Piece* tmpPiece){
             }
 
         }
-        
+
         posCounter += 1;
     }
-    //Queen moves up on Y axis
     if(!dangerMove) tmpPiece->getDangerMoves().clear();
     finishLoop = false;
     posCounter = 8;
@@ -601,12 +573,11 @@ void ChessGame::calcQueenMoves(Piece* tmpPiece){
                     finishLoop = true;
                     break;
                 }
-            }        
+            }
             tmpPiece->getPossibleMoves().push_back(piecePos-posCounter);
         }
 
         if(!dangerMove){
-            // whitePieces[4] is white King , blackPieces[3] is black King
             tmpPiece->getDangerMoves().push_back(piecePos-posCounter);
             if(!playerTurn){
                 if( (piecePos-posCounter) == blackPieces[3].getPosition() )
@@ -621,7 +592,6 @@ void ChessGame::calcQueenMoves(Piece* tmpPiece){
 
         posCounter += 8;
     }
-    //Queen moves down on Y axis
     if(!dangerMove) tmpPiece->getDangerMoves().clear();
     finishLoop = false;
     posCounter = 8;
@@ -635,9 +605,8 @@ void ChessGame::calcQueenMoves(Piece* tmpPiece){
             }
             tmpPiece->getPossibleMoves().push_back(piecePos+posCounter);
         }
-        
+
         if(!dangerMove){
-            // whitePieces[4] is white King , blackPieces[3] is black King
             tmpPiece->getDangerMoves().push_back(piecePos+posCounter);
             if(!playerTurn){
                 if( (piecePos+posCounter) == blackPieces[3].getPosition() )
@@ -651,7 +620,6 @@ void ChessGame::calcQueenMoves(Piece* tmpPiece){
 
         posCounter += 8;
     }
-    // Queen moves towards top left
     if(!dangerMove) tmpPiece->getDangerMoves().clear();
     finishLoop = false;
     posCounter = 9;
@@ -667,7 +635,6 @@ void ChessGame::calcQueenMoves(Piece* tmpPiece){
         }
 
         if(!dangerMove){
-            // whitePieces[4] is white King , blackPieces[3] is black King
             tmpPiece->getDangerMoves().push_back(piecePos-posCounter);
             if(!playerTurn){
                 if( (piecePos-posCounter) == blackPieces[3].getPosition() )
@@ -681,7 +648,6 @@ void ChessGame::calcQueenMoves(Piece* tmpPiece){
 
         posCounter += 9;
     }
-    // Queen moves towards bottom right
     if(!dangerMove) tmpPiece->getDangerMoves().clear();
     finishLoop = false;
     posCounter = 9;
@@ -692,12 +658,11 @@ void ChessGame::calcQueenMoves(Piece* tmpPiece){
                     finishLoop = true;
                     break;
                 }
-            }        
+            }
             tmpPiece->getPossibleMoves().push_back(piecePos+posCounter);
         }
 
         if(!dangerMove){
-            // whitePieces[4] is white King , blackPieces[3] is black King
             tmpPiece->getDangerMoves().push_back(piecePos+posCounter);
             if(!playerTurn){
                 if( (piecePos+posCounter) == blackPieces[3].getPosition() )
@@ -711,7 +676,6 @@ void ChessGame::calcQueenMoves(Piece* tmpPiece){
 
         posCounter += 9;
     }
-    // Queen moves towards top right
     if(!dangerMove) tmpPiece->getDangerMoves().clear();
     finishLoop = false;
     posCounter = 7;
@@ -722,12 +686,11 @@ void ChessGame::calcQueenMoves(Piece* tmpPiece){
                     finishLoop = true;
                     break;
                 }
-            }        
+            }
             tmpPiece->getPossibleMoves().push_back(piecePos-posCounter);
         }
 
         if(!dangerMove){
-            // whitePieces[4] is white King , blackPieces[3] is black King
             tmpPiece->getDangerMoves().push_back(piecePos-posCounter);
             if(!playerTurn){
                 if( (piecePos-posCounter) == blackPieces[3].getPosition() )
@@ -741,7 +704,6 @@ void ChessGame::calcQueenMoves(Piece* tmpPiece){
 
         posCounter += 7;
     }
-    // Queen moves towards bottom left
     if(!dangerMove) tmpPiece->getDangerMoves().clear();
     finishLoop = false;
     posCounter = 7;
@@ -752,12 +714,11 @@ void ChessGame::calcQueenMoves(Piece* tmpPiece){
                     finishLoop = true;
                     break;
                 }
-            }        
+            }
             tmpPiece->getPossibleMoves().push_back(piecePos+posCounter);
         }
 
         if(!dangerMove){
-            // whitePieces[4] is white King , blackPieces[3] is black King
             tmpPiece->getDangerMoves().push_back(piecePos+posCounter);
             if(!playerTurn){
                 if( (piecePos+posCounter) == blackPieces[3].getPosition() )
@@ -774,7 +735,7 @@ void ChessGame::calcQueenMoves(Piece* tmpPiece){
 
     if(!dangerMove) tmpPiece->getDangerMoves().clear();
 
-    
+
     if(!tmpPiece->getDangerMoves().empty()){
         int collisions{0};
         for(int j=0; j<tmpPiece->getDangerMoves().size(); j++){
@@ -797,7 +758,7 @@ void ChessGame::calcQueenMoves(Piece* tmpPiece){
     }
 
     tmpPiece->getDangerMoves().push_back( tmpPiece->getPosition() );
-    
+
 }
 
 
@@ -815,7 +776,6 @@ void ChessGame::calcRookMoves(Piece* tmpPiece){
     tmpPiece->getPossibleMoves().clear();
     tmpPiece->getDangerMoves().clear();
 
-    // Rook moves left on X axis
     while( ((piecePos-posCounter) >= 0) && ((piecePos/8) == ((piecePos-posCounter)/8)) ){
         if(!finishLoop){
             for(int i = 0; i<16; i++){
@@ -826,9 +786,8 @@ void ChessGame::calcRookMoves(Piece* tmpPiece){
             }
             tmpPiece->getPossibleMoves().push_back(piecePos-posCounter);
         }
-        
+
         if(!dangerMove){
-            // whitePieces[4] is white King , blackPieces[3] is black King
             tmpPiece->getDangerMoves().push_back(piecePos-posCounter);
             if(!playerTurn){
                 if( (piecePos-posCounter) == blackPieces[3].getPosition() )
@@ -843,7 +802,6 @@ void ChessGame::calcRookMoves(Piece* tmpPiece){
         posCounter += 1;
     }
 
-    // Rook moves right on X axis
     if(!dangerMove) tmpPiece->getDangerMoves().clear();
     finishLoop = false;
     posCounter = 1;
@@ -854,12 +812,11 @@ void ChessGame::calcRookMoves(Piece* tmpPiece){
                     finishLoop = true;
                     break;
                 }
-            }        
+            }
             tmpPiece->getPossibleMoves().push_back(piecePos+posCounter);
         }
 
         if(!dangerMove){
-            // whitePieces[4] is white King , blackPieces[3] is black King
             tmpPiece->getDangerMoves().push_back(piecePos+posCounter);
             if(!playerTurn){
                 if( (piecePos+posCounter) == blackPieces[3].getPosition() )
@@ -870,11 +827,10 @@ void ChessGame::calcRookMoves(Piece* tmpPiece){
                     dangerMove = true;
             }
         }
-        
+
         posCounter += 1;
     }
 
-    // Rook moves up on Y axis
     if(!dangerMove) tmpPiece->getDangerMoves().clear();
     finishLoop = false;
     posCounter = 8;
@@ -890,7 +846,6 @@ void ChessGame::calcRookMoves(Piece* tmpPiece){
         }
 
         if(!dangerMove){
-            // whitePieces[4] is white King , blackPieces[3] is black King
             tmpPiece->getDangerMoves().push_back(piecePos-posCounter);
             if(!playerTurn){
                 if( (piecePos-posCounter) == blackPieces[3].getPosition() )
@@ -905,7 +860,6 @@ void ChessGame::calcRookMoves(Piece* tmpPiece){
         posCounter += 8;
     }
 
-    // Rook moves down on Y axis
     if(!dangerMove) tmpPiece->getDangerMoves().clear();
     finishLoop = false;
     posCounter = 8;
@@ -921,7 +875,6 @@ void ChessGame::calcRookMoves(Piece* tmpPiece){
         }
 
         if(!dangerMove){
-            // whitePieces[4] is white King , blackPieces[3] is black King
             tmpPiece->getDangerMoves().push_back(piecePos+posCounter);
             if(!playerTurn){
                 if( (piecePos+posCounter) == blackPieces[3].getPosition() )
@@ -938,7 +891,7 @@ void ChessGame::calcRookMoves(Piece* tmpPiece){
 
     if(!dangerMove) tmpPiece->getDangerMoves().clear();
 
-    
+
     if(!tmpPiece->getDangerMoves().empty()){
         int collisions{0};
         for(int j=0; j<tmpPiece->getDangerMoves().size(); j++){
@@ -961,7 +914,7 @@ void ChessGame::calcRookMoves(Piece* tmpPiece){
     }
 
     tmpPiece->getDangerMoves().push_back( tmpPiece->getPosition() );
-    
+
 }
 
 
@@ -970,7 +923,6 @@ void ChessGame::calcRookMoves(Piece* tmpPiece){
 
 void ChessGame::calcBishopMoves(Piece* tmpPiece){
 
-    //Normal Bishop Moving
     int piecePos{tmpPiece->getPosition()};
     int posCounter{9};
 
@@ -980,7 +932,6 @@ void ChessGame::calcBishopMoves(Piece* tmpPiece){
     tmpPiece->getPossibleMoves().clear();
     tmpPiece->getDangerMoves().clear();
 
-    // Bishop moves towards top left
     while( ((piecePos-posCounter) >= 0) && (((piecePos-posCounter) % 8) < (piecePos % 8)) ){
         if(!finishLoop){
             for(int i = 0; i<16; i++){
@@ -993,7 +944,6 @@ void ChessGame::calcBishopMoves(Piece* tmpPiece){
         }
 
         if(!dangerMove){
-            // whitePieces[4] is white King , blackPieces[3] is black King
             tmpPiece->getDangerMoves().push_back(piecePos-posCounter);
             if(!playerTurn){
                 if( (piecePos-posCounter) == blackPieces[3].getPosition() )
@@ -1008,7 +958,6 @@ void ChessGame::calcBishopMoves(Piece* tmpPiece){
         posCounter += 9;
     }
 
-    // Bishop moves towards bottom right
     if(!dangerMove) tmpPiece->getDangerMoves().clear();
     finishLoop = false;
     posCounter = 9;
@@ -1024,7 +973,6 @@ void ChessGame::calcBishopMoves(Piece* tmpPiece){
         }
 
         if(!dangerMove){
-            // whitePieces[4] is white King , blackPieces[3] is black King
             tmpPiece->getDangerMoves().push_back(piecePos+posCounter);
             if(!playerTurn){
                 if( (piecePos+posCounter) == blackPieces[3].getPosition() )
@@ -1039,7 +987,6 @@ void ChessGame::calcBishopMoves(Piece* tmpPiece){
         posCounter += 9;
     }
 
-    // Bishop moves towards top right
     if(!dangerMove) tmpPiece->getDangerMoves().clear();
     finishLoop = false;
     posCounter = 7;
@@ -1055,7 +1002,6 @@ void ChessGame::calcBishopMoves(Piece* tmpPiece){
         }
 
         if(!dangerMove){
-            // whitePieces[4] is white King , blackPieces[3] is black King
             tmpPiece->getDangerMoves().push_back(piecePos-posCounter);
             if(!playerTurn){
                 if( (piecePos-posCounter) == blackPieces[3].getPosition() )
@@ -1070,7 +1016,6 @@ void ChessGame::calcBishopMoves(Piece* tmpPiece){
         posCounter += 7;
     }
 
-    // Bishop moves towards bottom left
     if(!dangerMove) tmpPiece->getDangerMoves().clear();
     finishLoop = false;
     posCounter = 7;
@@ -1102,8 +1047,8 @@ void ChessGame::calcBishopMoves(Piece* tmpPiece){
     }
 
     if(!dangerMove) tmpPiece->getDangerMoves().clear();
-    
-    
+
+
     if(!tmpPiece->getDangerMoves().empty()){
         int collisions{0};
         for(int j=0; j<tmpPiece->getDangerMoves().size(); j++){
@@ -1124,9 +1069,9 @@ void ChessGame::calcBishopMoves(Piece* tmpPiece){
         if(collisions > 2)
             tmpPiece->getDangerMoves().clear();
     }
-    
+
     tmpPiece->getDangerMoves().push_back( tmpPiece->getPosition() );
-    
+
 
 }
 
@@ -1189,12 +1134,12 @@ void ChessGame::calcKnightMoves(Piece* tmpPiece){
 
 void ChessGame::calcPawnMoves(Piece* tmpPiece){
 
-    
+
     tmpPiece->getPossibleMoves().clear();
 
     int piecePos{tmpPiece->getPosition()};
-    
-    if (tmpPiece->getPlayer()){ // If pawn is white
+
+    if (tmpPiece->getPlayer()){
         if((piecePos / 8) != 0){
             int i{0};
             for(i = 0; i<16;i++){
@@ -1237,19 +1182,19 @@ void ChessGame::calcPawnMoves(Piece* tmpPiece){
                         tmpPiece->getPossibleMoves().push_back(piecePos - 7);
                         break;
                     }
-                }                    
+                }
             }
 
         }
-        else{ // MUST PROMOTE PAWN
+        else{
             tmpPiece->setPiece('Q', tmpPiece->getPlayer(), tmpPiece->getPosition(), true);
             calcQueenMoves(tmpPiece);
             return;
         }
-        
+
 
     }
-    else{ //if pawn is black
+    else{
 
         if((piecePos / 8) != 7){
             int i{0};
@@ -1280,7 +1225,7 @@ void ChessGame::calcPawnMoves(Piece* tmpPiece){
                         tmpPiece->getPossibleMoves().push_back(piecePos + 7);
                         break;
                     }
-                }                    
+                }
             }
 
             if((piecePos % 8) != 7){
@@ -1293,11 +1238,11 @@ void ChessGame::calcPawnMoves(Piece* tmpPiece){
                         tmpPiece->getPossibleMoves().push_back(piecePos + 9);
                         break;
                     }
-                }                    
+                }
             }
 
         }
-        else{ // MUST PROMOTE PAWN
+        else{
             tmpPiece->setPiece('Q', tmpPiece->getPlayer(), tmpPiece->getPosition(), true);
             calcQueenMoves(tmpPiece);
             return;
@@ -1332,9 +1277,8 @@ void ChessGame::calcCastling(Piece* tmpPiece){
     if( playerTurnCheck || (tmpPiece->getType() != 'K') || tmpPiece->getMoved() || (tmpPiece->getPlayer() != playerTurn))
         return;
 
-    
-    if(tmpPiece->getPlayer()){ // If White King
-        // whitePieces[0] Bot Left Rook, whitePieces[7] Bot Right Rook
+
+    if(tmpPiece->getPlayer()){
         if(!whitePieces[7].getMoved()){
             int i{0};
             for(i=0;i<16;i++){
@@ -1359,7 +1303,7 @@ void ChessGame::calcCastling(Piece* tmpPiece){
                 }
             }
             if(i != 17){
-                
+
                 tmpPiece->getPossibleMoves().push_back(62);
             }
         }
@@ -1392,8 +1336,7 @@ void ChessGame::calcCastling(Piece* tmpPiece){
             }
         }
     }
-    else{ // If Black King
-        // blackPieces[7] Top Left Rook, blackPieces[0] Top Right Rook
+    else{
         if(!blackPieces[7].getMoved()){
             int i{0};
             for(i=0;i<16;i++){
@@ -1456,18 +1399,11 @@ void ChessGame::calcCastling(Piece* tmpPiece){
 
 
 void ChessGame::checkMate(){
-    // No more than two piece can check a King.
-    // A single check can be unchecked either by the King moving to
-        // a square that is not attacked, or if another piece blocks/kills the attacking piece
-    // A double check can be unchecked only by moving the checked King
-
     Piece* check1{NULL};
     Piece* check2{NULL};
 
-    // Check if current player's King is in check
-    // whitePieces[4] is white King , blackPieces[3] is black King
     for(int i = 0; i<16; i++){
-        if(playerTurn){ // White turn
+        if(playerTurn){
             for(int j=0; j < blackPieces[i].getPossibleMoves().size(); j++){
                 if(whitePieces[4].getPosition() == blackPieces[i].getPossibleMoves().at(j)){
                     if(check1 == NULL){
@@ -1476,14 +1412,13 @@ void ChessGame::checkMate(){
                         break;
                     }
                     else if(check2 == NULL){
-                        //playerTurnCheck = true;
                         check2 = &blackPieces[i];
                         break;
                     }
                 }
             }
         }
-        else{ // Black turn
+        else{
             for(int j=0; j < whitePieces[i].getPossibleMoves().size(); j++){
                 if(blackPieces[3].getPosition() == whitePieces[i].getPossibleMoves().at(j)){
                     if(check1 == NULL){
@@ -1492,7 +1427,6 @@ void ChessGame::checkMate(){
                         break;
                     }
                     else if(check2 == NULL){
-                        //playerTurnCheck = true;
                         check2 = &whitePieces[i];
                         break;
                     }
@@ -1504,10 +1438,8 @@ void ChessGame::checkMate(){
             break;
     }
 
-    // Check which current player pieces moves put its King out of check
-    // If no moves then Check Mate, current player loses
     if(playerTurnCheck){
-        if(check2 != NULL){ // If double check, clear current player's pieces moves except king's
+        if(check2 != NULL){
             if(playerTurn)
                 for(int i=0; i<16; i++)
                     if(whitePieces[i].getType() != 'K')
@@ -1517,12 +1449,12 @@ void ChessGame::checkMate(){
                     if(blackPieces[i].getType() != 'K')
                         blackPieces[i].getPossibleMoves().clear();
         }
-        else{ // If single check
+        else{
 
-            for(int j=0; j<16; j++){ // pieces array counter
+            for(int j=0; j<16; j++){
                 std::vector<int> tmpMoves;
 
-                if(playerTurn){ // If White turn
+                if(playerTurn){
                     if(whitePieces[j].getType() == 'K')
                         continue;
                     for(int o = 0; o < whitePieces[j].getPossibleMoves().size(); o++){
@@ -1539,7 +1471,7 @@ void ChessGame::checkMate(){
                     whitePieces[j].getPossibleMoves().clear();
                     whitePieces[j].getPossibleMoves() = tmpMoves;
                 }
-                else{ // If Black turn
+                else{
                     if(blackPieces[j].getType() == 'K')
                         continue;
                     for(int o = 0; o < blackPieces[j].getPossibleMoves().size(); o++){
@@ -1559,8 +1491,6 @@ void ChessGame::checkMate(){
         }
 
 
-        //Bug fix
-        // whitePieces[4] is white King , blackPieces[3] is black King
         Piece* curKing;
         if(playerTurn){
             curKing = &whitePieces[4];
@@ -1585,22 +1515,22 @@ void ChessGame::checkMate(){
 
                 for(int i=0; i< curKing->getPossibleMoves().size(); i++){
                     if(curKing->getPossibleMoves().at(i) != checkPos){
-                        if((curKing->getPosition()%8) < (checkPos%8)){ // King left of Check
-                            if((curKing->getPosition()/8) < (checkPos/8)){ // King top of Check
+                        if((curKing->getPosition()%8) < (checkPos%8)){
+                            if((curKing->getPosition()/8) < (checkPos/8)){
                                 if( ((curKing->getPossibleMoves().at(i)%8) < (curKing->getPosition()%8)) && ((curKing->getPossibleMoves().at(i)/8) <  (curKing->getPosition()/8))  )
                                     curKing->getPossibleMoves().erase( curKing->getPossibleMoves().begin() + i--);
                             }
-                            else if((checkPos/8) < (curKing->getPosition()/8)){ // King under Check
+                            else if((checkPos/8) < (curKing->getPosition()/8)){
                                 if( ((curKing->getPossibleMoves().at(i)%8) < (curKing->getPosition()%8)) && ((curKing->getPossibleMoves().at(i)/8) >  (curKing->getPosition()/8))  )
                                     curKing->getPossibleMoves().erase( curKing->getPossibleMoves().begin() + i--);
                             }
                         }
-                        else if((checkPos%8) < (curKing->getPosition()%8) ){ // King right of Check
-                            if((curKing->getPosition()/8) < (checkPos/8)){ // King top of Check
+                        else if((checkPos%8) < (curKing->getPosition()%8) ){
+                            if((curKing->getPosition()/8) < (checkPos/8)){
                                 if( ((curKing->getPossibleMoves().at(i)%8) > (curKing->getPosition()%8)) && ((curKing->getPossibleMoves().at(i)/8) <  (curKing->getPosition()/8))  )
                                     curKing->getPossibleMoves().erase( curKing->getPossibleMoves().begin() + i--);
                             }
-                            else if((checkPos/8) < (curKing->getPosition()/8)){ // King under Check
+                            else if((checkPos/8) < (curKing->getPosition()/8)){
                                 if( ((curKing->getPossibleMoves().at(i)%8) > (curKing->getPosition()%8)) && ((curKing->getPossibleMoves().at(i)/8) >  (curKing->getPosition()/8))  )
                                     curKing->getPossibleMoves().erase( curKing->getPossibleMoves().begin() + i--);
                             }
@@ -1609,7 +1539,6 @@ void ChessGame::checkMate(){
                 }
             }
         }
-        //Bug fix
         if(check2 != NULL){
             if((check2->getType() == 'Q') || (check2->getType() == 'R' || (check2->getType() == 'B'))){
                 int checkPos{check2->getPosition()};
@@ -1627,22 +1556,22 @@ void ChessGame::checkMate(){
 
                 for(int i=0; i< curKing->getPossibleMoves().size(); i++){
                     if(curKing->getPossibleMoves().at(i) != checkPos){
-                        if((curKing->getPosition()%8) < (checkPos%8)){ // King left of Check
-                            if((curKing->getPosition()/8) < (checkPos/8)){ // King top of Check
+                        if((curKing->getPosition()%8) < (checkPos%8)){
+                            if((curKing->getPosition()/8) < (checkPos/8)){
                                 if( ((curKing->getPossibleMoves().at(i)%8) < (curKing->getPosition()%8)) && ((curKing->getPossibleMoves().at(i)/8) <  (curKing->getPosition()/8))  )
                                     curKing->getPossibleMoves().erase( curKing->getPossibleMoves().begin() + i--);
                             }
-                            else if((checkPos/8) < (curKing->getPosition()/8)){ // King under Check
+                            else if((checkPos/8) < (curKing->getPosition()/8)){
                                 if( ((curKing->getPossibleMoves().at(i)%8) < (curKing->getPosition()%8)) && ((curKing->getPossibleMoves().at(i)/8) >  (curKing->getPosition()/8))  )
                                     curKing->getPossibleMoves().erase( curKing->getPossibleMoves().begin() + i--);
                             }
                         }
-                        else if((checkPos%8) < (curKing->getPosition()%8) ){ // King right of Check
-                            if((curKing->getPosition()/8) < (checkPos/8)){ // King top of Check
+                        else if((checkPos%8) < (curKing->getPosition()%8) ){
+                            if((curKing->getPosition()/8) < (checkPos/8)){
                                 if( ((curKing->getPossibleMoves().at(i)%8) > (curKing->getPosition()%8)) && ((curKing->getPossibleMoves().at(i)/8) <  (curKing->getPosition()/8))  )
                                     curKing->getPossibleMoves().erase( curKing->getPossibleMoves().begin() + i--);
                             }
-                            else if((checkPos/8) < (curKing->getPosition()/8)){ // King under Check
+                            else if((checkPos/8) < (curKing->getPosition()/8)){
                                 if( ((curKing->getPossibleMoves().at(i)%8) > (curKing->getPosition()%8)) && ((curKing->getPossibleMoves().at(i)/8) >  (curKing->getPosition()/8))  )
                                     curKing->getPossibleMoves().erase( curKing->getPossibleMoves().begin() + i--);
                             }
@@ -1658,7 +1587,6 @@ void ChessGame::checkMate(){
         calcCastling(&blackPieces[3]);
     }
 
-    // Check if current player has any available moves
     int i{0};
     for(i=0; i<16; i++){
         if(playerTurn){
@@ -1670,7 +1598,7 @@ void ChessGame::checkMate(){
                 break;
         }
     }
-    if(i==16){ 
+    if(i==16){
         mate = true;
     }
 

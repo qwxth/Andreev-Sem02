@@ -1,8 +1,3 @@
-/*
-    This header file contains th ChessGame class.
-    contains the whole game.
-*/
-
 #ifndef _CHESSGAME_H
 #define _CHESSGAME_H
 
@@ -29,10 +24,10 @@ private:
     sf::Text textTurn;
     sf::Text textSituation;
     sf::Text textLastMove;
-    
+
 
     bool selected;
-    bool playerTurn; // true = White turn, false = Black Turn
+    bool playerTurn;
     bool playerTurnCheck;
     bool mate;
     int turn;
@@ -68,7 +63,7 @@ public:
     void moveSelected(int pos);
 
     void restart();
-    
+
 
 
 };

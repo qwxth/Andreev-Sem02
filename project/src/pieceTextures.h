@@ -1,7 +1,3 @@
-/*
-    This header file contains the PieceTextures class.
-*/
-
 #ifndef _PIECE_TEXTURES_H
 #define _PIECE_TEXTURES_H
 

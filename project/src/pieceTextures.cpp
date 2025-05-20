@@ -1,8 +1,3 @@
-/*
-    This code file contains static member initialisations
-    of pieceTextures.h
-*/
-
 #include "pieceTextures.h"
 
 sf::Texture PieceTextures::loadTexture(std::string str){
